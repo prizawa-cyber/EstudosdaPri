@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal de Estudos — Medicina CENSUPEG</title>
+<style>
+:root{
+  --verde:#2e7d52;--verde-c:#e8f5ee;--verde-m:#b2dfca;
+  --lilas:#7c5cbf;--lilas-c:#f0ebfa;--lilas-m:#d0bfef;
+  --rosa:#c2185b;--rosa-c:#fce4ec;--rosa-m:#f48fb1;
+  --azul:#1565a8;--azul-c:#e3f0fb;--azul-m:#90caf9;
+  --amber:#b06000;--amber-c:#fff8e1;--amber-m:#ffe082;
+  --teal:#00796b;--teal-c:#e0f2f1;--teal-m:#80cbc4;
+  --ink:#1a2332;--ink2:#3d4f63;--bg:#f8f9fc;
+  --paper:#ffffff;--rule:#dde3ea;--text:#2c3a48;
+  --r:12px;--sh:0 2px 16px rgba(0,0,0,.08);
+  --sans:"Segoe UI",system-ui,sans-serif;--serif:Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.68;min-height:100vh;display:flex;flex-direction:column}
+
+.page{max-width:980px;margin:0 auto;padding:40px 20px 60px;flex:1}
+
+.hero{background:linear-gradient(135deg,var(--ink) 0%,var(--azul) 60%,var(--teal) 100%);border-radius:var(--r);padding:52px 44px 44px;color:#fff;margin-bottom:40px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--rosa),var(--azul),var(--verde),var(--amber))}
+.hero::after{content:"";position:absolute;top:-60px;right:-60px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.05)}
+.avatar{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--azul),var(--teal));display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:20px;border:2px solid rgba(255,255,255,.2);position:relative;z-index:1}
+.hero h1{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);font-weight:400;letter-spacing:.02em;position:relative;z-index:1;margin-bottom:8px}
+.hero .sub{font-size:.8rem;opacity:.6;letter-spacing:.12em;text-transform:uppercase;position:relative;z-index:1;margin-bottom:20px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;position:relative;z-index:1}
+.htag{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:3px 14px;border-radius:20px;font-size:.73rem;font-weight:600}
+
+.section-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);opacity:.6;margin-bottom:16px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-bottom:40px}
+
+.card{background:var(--paper);border:1.5px solid var(--rule);border-radius:var(--r);padding:28px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:14px;transition:all .18s;position:relative;overflow:hidden;box-shadow:var(--sh)}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;opacity:0;transition:opacity .18s}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,.12);border-color:transparent}
+.card:hover::before{opacity:1}
+.card.semi::before{background:linear-gradient(90deg,var(--rosa),var(--azul))}
+.card.saude::before{background:linear-gradient(90deg,var(--azul),var(--verde))}
+.card.soon{opacity:.45;pointer-events:none}
+.card.soon::before{display:none}
+
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.card-icon{font-size:1.8rem;line-height:1;flex-shrink:0}
+.card-meta{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);opacity:.5;margin-bottom:4px}
+.card-title{font-family:var(--serif);font-size:1.05rem;font-weight:400;color:var(--ink);line-height:1.35}
+.card-arrow{font-size:1.1rem;opacity:.2;transition:all .18s;color:var(--azul)}
+.card:hover .card-arrow{opacity:.8;transform:translateX(4px)}
+.card-desc{font-size:.83rem;line-height:1.6;color:var(--ink2)}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px}
+.ctag{padding:2px 10px;border-radius:20px;font-size:.68rem;font-weight:700}
+.tag-rosa{background:var(--rosa-c);color:var(--rosa)}
+.tag-azul{background:var(--azul-c);color:var(--azul)}
+.tag-verde{background:var(--verde-c);color:var(--verde)}
+.tag-amber{background:var(--amber-c);color:var(--amber)}
+.tag-lilas{background:var(--lilas-c);color:var(--lilas)}
+.tag-teal{background:var(--teal-c);color:var(--teal)}
+.soon-pill{background:var(--bg);border:1px solid var(--rule);color:var(--ink2);font-size:.63rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:2px 9px;border-radius:20px;flex-shrink:0}
+
+footer{border-top:1px solid var(--rule);padding:22px 40px;font-size:.72rem;color:var(--ink2);opacity:.5;text-align:center;letter-spacing:.04em}
+
+@media(max-width:600px){.hero{padding:36px 22px 32px}.page{padding:24px 16px 40px}footer{padding:18px 20px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="avatar">🩺</div>
+    <h1>Portal de Estudos — Medicina</h1>
+    <p class="sub">Faculdade CENSUPEG · 3.º Ano · 2026/1</p>
+    <div class="hero-tags">
+      <span class="htag">Semiologia I</span>
+      <span class="htag">Saúde da Comunidade III</span>
+      <span class="htag">Em expansão</span>
+    </div>
+  </div>
+
+  <p class="section-label">Cadernos Disponíveis</p>
+
+  <div class="grid">
+    <a class="card semi" href="caderno_semiologia_definitivo.html">
+      <div class="card-top">
+        <div>
+          <div class="card-meta">Semiologia I</div>
+          <div class="card-title">Caderno Definitivo 2026</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <span class="card-icon">🫀</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+      <p class="card-desc">Raciocínio em camadas topográfico → etiológico. Síndromes respiratórias, cardiovasculares, renais e abdominais. 20 questões padrão-prova com feedback por distrator.</p>
+      <div class="tag-row">
+        <span class="ctag tag-rosa">Ondas Jugulares ★</span>
+        <span class="ctag tag-azul">IRA — KDIGO</span>
+        <span class="ctag tag-amber">Hipolipemiantes</span>
+        <span class="ctag tag-teal">IAM / SCA</span>
+        <span class="ctag tag-rosa">20 Questões</span>
+      </div>
+    </a>
+
+    <a class="card saude" href="saude-comunidade-III.html">
+      <div class="card-top">
+        <div>
+          <div class="card-meta">Saúde da Comunidade III</div>
+          <div class="card-title">Guia Completo 2026</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <span class="card-icon">🏥</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+      <p class="card-desc">Política de saúde, inclusão social, PTS, saúde indígena, cuidado de feridas e curativos. Dois módulos completos com 40 questões.</p>
+      <div class="tag-row">
+        <span class="ctag tag-azul">PCD · LBI · PTS</span>
+        <span class="ctag tag-verde">Feridas · Curativos</span>
+        <span class="ctag tag-teal">COFEN 787/2025</span>
+        <span class="ctag tag-rosa">40 Questões</span>
+      </div>
+    </a>
+
+    <div class="card soon">
+      <div class="card-top">
+        <div>
+          <div class="card-meta">Em breve</div>
+          <div class="card-title">Farmacologia Clínica</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <span class="card-icon">💊</span>
+          <span class="soon-pill">Em breve</span>
+        </div>
+      </div>
+      <p class="card-desc">Anticoagulantes, antiagregantes, antiarrítmicos e hipolipemiantes. Caderno em preparação.</p>
+      <div class="tag-row">
+        <span class="ctag tag-azul">Anticoagulantes</span>
+        <span class="ctag tag-lilas">Antiarrítmicos</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Portal de estudos pessoal · Medicina 2026/1 · CENSUPEG Joinville</footer>
+</body>
+</html>
