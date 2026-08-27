@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal de Estudos da Pri — Medicina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* neutros */
+  --bg:#F5F6FD;--paper:#FFFFFF;--rule:#E0E2EE;--rule2:#CBCEDF;
+  --ink:#23263A;--ink2:#5A5F73;--ink3:#8A8FA3;
+
+  /* acentos dessaturados */
+  --sage:#007F97;   --sage-c:#DDF2F7;
+  --azul:#6970A9;   --azul-c:#EAEBF5;
+  --clay:#83716D;   --clay-c:#F7EFED;
+  --areia:#79717C;  --areia-c:#F3EEF4;
+  --lilas:#6970A9;  --lilas-c:#EAEBF5;
+  --teal:#007F97;   --teal-c:#DDF2F7;
+
+  --r:6px;
+  --sans:Archivo,"Segoe UI",system-ui,sans-serif;
+  --serif:"Source Serif 4",Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink2);font-family:var(--sans);font-size:16px;line-height:1.62;min-height:100vh;display:flex;flex-direction:column}
+
+.page{max-width:1000px;margin:0 auto;padding:0 24px 64px;flex:1;width:100%}
+
+/* ---------- cabeçalho ---------- */
+.hero{padding:64px 0 32px;border-bottom:1px solid var(--rule);margin-bottom:38px}
+.hero .kicker{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin-bottom:16px}
+.hero h1{font-family:var(--serif);font-size:clamp(1.9rem,4.6vw,3rem);font-weight:600;color:var(--ink);line-height:1.1;letter-spacing:-.015em;margin-bottom:12px}
+.hero .sub{font-size:.95rem;color:var(--ink2);max-width:56ch;margin-bottom:22px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:7px}
+.htag{border:1px solid var(--rule2);color:var(--ink2);padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:500}
+
+
+.hero-topo{display:flex;gap:30px;align-items:flex-start;justify-content:space-between}
+.hero-txt{flex:1;min-width:0}
+.retrato{flex:0 0 176px;width:176px;margin-top:4px}
+.retrato img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 14px rgba(35,43,51,.14))}
+.bio{font-size:.92rem;color:var(--ink2);max-width:60ch;margin-bottom:20px}
+.bio b{color:var(--ink);font-weight:600}
+.assin{font-family:var(--serif);font-size:1rem;color:var(--ink);margin-bottom:20px}
+@media(max-width:640px){
+  .hero-topo{flex-direction:column-reverse;align-items:center;gap:18px;text-align:left}
+  .retrato{flex:0 0 auto;width:140px;align-self:center}
+}
+.section-label{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.section-label::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+/* ---------- grade ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;margin-bottom:44px}
+
+.card{background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--rule2);border-radius:var(--r);padding:26px 24px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:13px;transition:border-color .16s,background .16s}
+.card:hover{background:#FBFBFE;border-color:var(--rule2)}
+.card.semi{border-left-color:var(--clay)}
+.card.saude{border-left-color:var(--sage)}
+.card.neuro{border-left-color:var(--lilas)}
+.card.anato{border-left-color:var(--teal)}
+.card.soon{border-left-color:var(--rule2);opacity:.62;pointer-events:none;background:transparent}
+
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.card-id{display:flex;gap:13px;align-items:flex-start}
+.sigla{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.92rem;font-weight:600;flex-shrink:0}
+.card.semi .sigla{background:var(--clay-c);color:var(--clay)}
+.card.saude .sigla{background:var(--sage-c);color:var(--sage)}
+.card.neuro .sigla{background:var(--lilas-c);color:var(--lilas)}
+.card.leituras .sigla{background:var(--clay-c);color:var(--clay)}
+.card.ilustrado .sigla{background:var(--sage-c);color:var(--sage)}
+.card.anato .sigla{background:var(--teal-c);color:var(--teal)}
+.card.soon .sigla{background:var(--bg);color:var(--ink3);border:1px solid var(--rule)}
+.card-meta{font-size:.65rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.card-title{font-family:var(--serif);font-size:1.16rem;font-weight:600;color:var(--ink);line-height:1.3;letter-spacing:-.01em}
+.card-arrow{font-size:1rem;color:var(--ink3);transition:transform .16s,color .16s;align-self:center}
+.card:hover .card-arrow{color:var(--ink);transform:translateX(3px)}
+.card-desc{font-size:.86rem;line-height:1.58;color:var(--ink2)}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.ctag{padding:2px 9px;border-radius:3px;font-size:.68rem;font-weight:500}
+.tag-clay{background:var(--clay-c);color:var(--clay)}
+.tag-azul{background:var(--azul-c);color:var(--azul)}
+.tag-sage{background:var(--sage-c);color:var(--sage)}
+.tag-areia{background:var(--areia-c);color:var(--areia)}
+.tag-lilas{background:var(--lilas-c);color:var(--lilas)}
+.tag-teal{background:var(--teal-c);color:var(--teal)}
+.tag-n{background:transparent;border:1px solid var(--rule2);color:var(--ink3)}
+.soon-pill{font-size:.62rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--rule);padding:2px 9px;border-radius:20px;align-self:center;white-space:nowrap}
+
+footer{border-top:1px solid var(--rule);padding:22px 24px;font-size:.74rem;color:var(--ink3);text-align:center;letter-spacing:.03em}
+
+a:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+@media(max-width:600px){
+  .page{padding:0 16px 44px}
+  .hero{padding:44px 0 26px;margin-bottom:28px}
+  .card{padding:22px 18px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-topo">
+      <div class="hero-txt">
+        <p class="kicker">Medicina · 3.º Ano · 2026/1</p>
+        <h1>Portal de Estudos da Pri</h1>
+        <p class="bio">Enfermeira há 20 anos (IELUSC) e estomaterapeuta (PUC-PR), hoje no 3.º ano de Medicina — voltei a estudar para poder oferecer mais aos pacientes que já atendo. Estes cadernos são o meu jeito de estudar: cada disciplina virada no raciocínio que ela cobra, testada em questões comentadas uma a uma. Fiz para mim, deixo aberto porque material bom de estudo é melhor quando circula.</p>
+        <p class="assin">— Pri</p>
+      </div>
+      <div class="retrato">
+        <picture>
+          <source srcset="pri-avatar.webp" type="image/webp">
+          <img src="pri-avatar.png" alt="Ilustração da Pri, estudante de Medicina" width="700" height="987">
+        </picture>
+      </div>
+    </div>
+    <div class="hero-tags">
+      <span class="htag">Semiologia</span>
+      <span class="htag">Saúde da Comunidade</span>
+      <span class="htag">Neuroanatomia</span>
+      <span class="htag">Enfermagem · Estomaterapia</span>
+    </div>
+  </header>
+
+  <p class="section-label">Cadernos e leituras</p>
+
+  <div class="grid">
+
+    <a class="card semi" href="caderno_semiologia_definitivo.html">
+      <div class="card-top">
+        <div class="card-id">
+          <span class="sigla">Sm</span>
+          <div>
+            <div class="card-meta">Semiologia I</div>
+            <div class="card-title">Caderno Definitivo</div>
+          </div>
+        </div>
+        <span class="card-arrow">&rarr;</span>
+      </div>
+      <p class="card-desc">Raciocínio em camadas, do topográfico ao etiológico. Síndromes respiratórias, cardiovasculares, renais e abdominais, com feedback por distrator.</p>
+      <div class="tag-row">
+        <span class="ctag tag-clay">Ondas jugulares</span>
+        <span class="ctag tag-azul">IRA · KDIGO</span>
+        <span class="ctag tag-areia">Hipolipemiantes</span>
+        <span class="ctag tag-teal">IAM · SCA</span>
+        <span class="ctag tag-n">20 questões</span>
+      </div>
+    </a>
+
+    <a class="card saude" href="saude-comunidade-III.html">
+      <div class="card-top">
+        <div class="card-id">
+          <span class="sigla">SC</span>
+          <div>
+            <div class="card-meta">Saúde da Comunidade III</div>
+            <div class="card-title">Guia Completo</div>
+          </div>
+        </div>
+        <span class="card-arrow">&rarr;</span>
+      </div>
+      <p class="card-desc">Política de saúde, inclusão social, PTS, saúde indígena e cuidado de feridas. Dois módulos completos, com questões ao fim de cada um.</p>
+      <div class="tag-row">
+        <span class="ctag tag-azul">PCD · LBI · PTS</span>
+        <span class="ctag tag-sage">Feridas · curativos</span>
+        <span class="ctag tag-teal">COFEN 787/2025</span>
+        <span class="ctag tag-n">40 questões</span>
+      </div>
+    </a>
+
+    <a class="card neuro" href="simulado-neuro.html">
+      <div class="card-top">
+        <div class="card-id">
+          <span class="sigla">Nr</span>
+          <div>
+            <div class="card-meta">Neuroanatomia · Semiologia</div>
+            <div class="card-title">Simulado em Quatro Níveis</div>
+          </div>
+        </div>
+        <span class="card-arrow">&rarr;</span>
+      </div>
+      <p class="card-desc">Estrutura, função e déficit. Do fácil ao muito difícil, com filtro por tema, comentário em cada alternativa e opção de refazer só os erros.</p>
+      <div class="tag-row">
+        <span class="ctag tag-lilas">Pares cranianos</span>
+        <span class="ctag tag-teal">Síndromes alternas</span>
+        <span class="ctag tag-azul">Vias e decussação</span>
+        <span class="ctag tag-areia">Vasovagal</span>
+        <span class="ctag tag-n">66 questões</span>
+      </div>
+    </a>
+
+    <a class="card anato" href="neuroanatomia-questionario.html">
+      <div class="card-top">
+        <div class="card-id">
+          <span class="sigla">Na</span>
+          <div>
+            <div class="card-meta">Neuroanatomia Funcional</div>
+            <div class="card-title">Questionário pelo Neuroeixo</div>
+          </div>
+        </div>
+        <span class="card-arrow">&rarr;</span>
+      </div>
+      <p class="card-desc">Os 32 capítulos ordenados do caudal ao rostral. Trilho de progresso por região, gabarito distribuído e comentário em cada alternativa.</p>
+      <div class="tag-row">
+        <span class="ctag tag-areia">Medula e tronco</span>
+        <span class="ctag tag-teal">Diencéfalo · cerebelo</span>
+        <span class="ctag tag-lilas">Córtex e límbico</span>
+        <span class="ctag tag-n">77 questões</span>
+      </div>
+    </a>
+
+
+    <a class="card ilustrado" href="caderno-neuroanatomia-ilustrado.html">
+      <div class="card-top">
+        <div class="card-id">
+          <span class="sigla">Il</span>
+          <div>
+            <div class="card-meta">Neuroanatomia · pranchas</div>
+            <div class="card-title">Caderno Ilustrado</div>
+          </div>
+        </div>
+        <span class="card-arrow">&rarr;</span>
+      </div>
+      <p class="card-desc">Seis pranchas em vetor, desenhadas do zero. Identifique cada estrutura numerada e o nome aparece no desenho conforme você acerta.</p>
+      <div class="tag-row">
+        <span class="ctag tag-teal">Medula · tronco</span>
+        <span class="ctag tag-azul">Ventrículos</span>
+        <span class="ctag tag-sage">Cerebelo · córtex</span>
+        <span class="ctag tag-n">44 estruturas</span>
+      </div>
+    </a>
+
+
+    <a class="card leituras" href="leituras.html">
+      <div class="card-top">
+        <div class="card-id">
+          <span class="sigla">Lt</span>
+          <div>
+            <div class="card-meta">Atualização contínua</div>
+            <div class="card-title">Leituras e Diretrizes</div>
+          </div>
+        </div>
+        <span class="card-arrow">&rarr;</span>
+      </div>
+      <p class="card-desc">Artigos de interesse, diretrizes recentes e recomendações — cada entrada com resumo curto e o motivo de importar na prática.</p>
+      <div class="tag-row">
+        <span class="ctag tag-teal">Artigos</span>
+        <span class="ctag tag-lilas">Diretrizes</span>
+        <span class="ctag tag-clay">Recomendações</span>
+      </div>
+    </a>
+
+    <div class="card soon">
+      <div class="card-top">
+        <div class="card-id">
+          <span class="sigla">Fc</span>
+          <div>
+            <div class="card-meta">Em preparação</div>
+            <div class="card-title">Farmacologia Clínica</div>
+          </div>
+        </div>
+        <span class="soon-pill">Em breve</span>
+      </div>
+      <p class="card-desc">Anticoagulantes, antiagregantes, antiarrítmicos e hipolipemiantes.</p>
+      <div class="tag-row">
+        <span class="ctag tag-n">Anticoagulantes</span>
+        <span class="ctag tag-n">Antiarrítmicos</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>Portal de estudos pessoal · Medicina · 2026/1 · Joinville, SC</footer>
+</body>
+</html>

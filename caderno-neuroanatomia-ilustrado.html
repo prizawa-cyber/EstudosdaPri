@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caderno Ilustrado de Neuroanatomia — identificação de estruturas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F6FD;--paper:#FFFFFF;--rule:#E0E2EE;--rule2:#CBCEDF;
+  --ink:#23263A;--ink2:#5A5F73;--ink3:#8A8FA3;
+  --sage:#007F97;--sage-c:#DDF2F7;
+  --azul:#6970A9;--azul-c:#EAEBF5;
+  --clay:#83716D;--clay-c:#F7EFED;
+  --areia:#79717C;--areia-c:#F3EEF4;
+  --lilas:#6970A9;--lilas-c:#EAEBF5;
+  --teal:#007F97;--teal-c:#DDF2F7;
+  --sans:Archivo,"Segoe UI",system-ui,sans-serif;
+  --serif:"Source Serif 4",Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink2);font-family:var(--sans);font-size:16px;line-height:1.62}
+.page{max-width:860px;margin:0 auto;padding:0 22px 80px}
+
+/* cabeçalho */
+.hero{padding:56px 0 28px;border-bottom:1px solid var(--rule);margin-bottom:30px}
+.kicker{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin-bottom:14px}
+h1{font-family:var(--serif);font-size:clamp(1.8rem,4.4vw,2.7rem);font-weight:600;color:var(--ink);line-height:1.12;letter-spacing:-.015em;margin-bottom:12px}
+.sub{font-size:.94rem;max-width:60ch}
+.aviso{margin-top:18px;padding:11px 14px;background:var(--areia-c);border-left:3px solid var(--areia);font-size:.84rem;line-height:1.55;border-radius:0 4px 4px 0}
+
+/* navegação */
+.indice{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 6px}
+.ind{font-size:.74rem;font-weight:500;padding:6px 12px;border:1px solid var(--rule2);border-radius:20px;background:var(--paper);color:var(--ink2);cursor:pointer;text-decoration:none}
+.ind:hover{border-color:var(--ink3);color:var(--ink)}
+
+/* barra */
+.barra{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--rule);padding:10px 0;margin-bottom:10px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.placar{font-size:.8rem;margin-right:auto;font-variant-numeric:tabular-nums}
+.placar b{color:var(--clay);font-weight:600}
+.btn{font-size:.72rem;font-weight:500;letter-spacing:.04em;padding:6px 11px;border:1px solid var(--rule2);background:var(--paper);color:var(--ink2);border-radius:4px;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--clay-c);border-color:var(--clay);color:var(--clay)}
+
+/* prancha */
+.prancha{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:28px 26px 22px;margin:20px 0}
+.p-meta{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.p-tit{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.25;margin-bottom:6px}
+.p-desc{font-size:.87rem;margin-bottom:18px}
+.fig{background:#FBFBFE;border:1px solid var(--rule);border-radius:6px;padding:12px;margin-bottom:20px;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:300px}
+
+/* traços do desenho */
+.contorno{fill:none;stroke:#2B2F45;stroke-width:2.2;stroke-linejoin:round}
+.contorno-fino{fill:none;stroke:#8F93A8;stroke-width:1.3}
+.cinzenta{fill:#DEDCE6;stroke:#8A8FA3;stroke-width:1.6}
+.branca{fill:#FCFCFE;stroke:#8A8FA3;stroke-width:1.6}
+.zona{stroke:#8A8FA3;stroke-width:1.1;stroke-dasharray:3 3}
+.z-asc{fill:#DFF1EB}
+.z-desc{fill:#F6E9E7}
+.z-neutra{fill:#F0EEF5}
+.liq{fill:#DDF2F7;stroke:#6970A9;stroke-width:1.6}
+.rot-fixo{font-family:Archivo,sans-serif;font-size:12.5px;fill:#5A5F73}
+.rot{font-family:Archivo,sans-serif;font-size:13px;font-weight:500;fill:#23263A;opacity:0;transition:opacity .3s}
+.rot.on{opacity:1}
+.guia{stroke:#8A8FA3;stroke-width:1;fill:none;opacity:0;transition:opacity .3s}
+.guia.on{opacity:1}
+.marc circle{fill:#fff;stroke:#5A5F73;stroke-width:1.6}
+.marc text{font-family:"IBM Plex Mono",Archivo,monospace;font-size:13px;font-weight:600;fill:#2B2F45;text-anchor:middle;dominant-baseline:central}
+.marc.certo circle{fill:var(--sage-c);stroke:var(--sage);stroke-width:2}
+.marc.certo text{fill:var(--sage)}
+.marc.errado circle{fill:var(--clay-c);stroke:var(--clay);stroke-width:2}
+.marc.errado text{fill:var(--clay)}
+
+/* itens */
+.item{border-top:1px solid var(--rule);padding:16px 0 4px}
+.item:first-child{border-top:none}
+.i-head{display:flex;gap:9px;align-items:baseline;margin-bottom:9px}
+.i-num{width:24px;height:24px;border-radius:50%;background:var(--bg);border:1px solid var(--rule2);color:var(--ink2);font-size:.74rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.i-perg{font-family:var(--serif);font-size:1.02rem;color:var(--ink);line-height:1.4}
+.alts{display:grid;gap:6px;margin-left:33px}
+.alt{text-align:left;font-family:inherit;font-size:.9rem;line-height:1.4;color:var(--ink2);background:var(--paper);border:1px solid var(--rule);border-radius:5px;padding:9px 12px;cursor:pointer;transition:border-color .14s,background .14s}
+.alt:hover:not(:disabled){border-color:var(--ink3);background:#FBFBFE}
+.alt:disabled{cursor:default}
+.alt.certa{border-color:var(--sage);background:var(--sage-c);color:var(--sage)}
+.alt.errada{border-color:var(--clay);background:var(--clay-c);color:var(--clay)}
+.alt.apagada{opacity:.42}
+.fb{margin:9px 0 0 33px;padding:10px 12px;border-radius:5px;font-size:.86rem;line-height:1.52;background:var(--sage-c);border-left:2px solid var(--sage)}
+.fb b{display:block;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:3px}
+.fb.erro{background:var(--clay-c);border-left-color:var(--clay)}
+.fb.erro b{color:var(--clay)}
+
+footer{border-top:1px solid var(--rule);padding:20px 0 0;margin-top:34px;font-size:.76rem;color:var(--ink3);line-height:1.6}
+footer b{color:var(--ink2);font-weight:500}
+:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+@media(max-width:600px){
+  .page{padding:0 14px 60px}
+  .prancha{padding:20px 14px 16px}
+  .alts,.fb{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.voltar{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:.76rem;font-weight:500;
+  letter-spacing:.02em;text-decoration:none;padding:7px 14px 7px 11px;border-radius:20px;margin:26px 0 0;
+  transition:background .15s,border-color .15s}
+.voltar:hover{background:var(--clay-c);border-color:var(--clay);color:var(--clay)}
+.rodape-voltar{margin-top:22px;display:block}
+</style>
+</head>
+<body>
+<div class="page">
+<a class="voltar" href="index.html" style="border:1px solid var(--rule2);color:var(--ink2)">&larr; Portal de Estudos da Pri</a>
+
+<header class="hero">
+  <p class="kicker">Neuroanatomia · caderno ilustrado</p>
+  <h1>Identificação de estruturas</h1>
+  <p class="sub">Seis pranchas esquemáticas com marcadores numerados. Para cada número, escolha o nome da estrutura: ao acertar, o rótulo aparece no desenho e a prancha vai se completando.</p>
+  <p class="aviso"><b>Pranchas autorais.</b> Os desenhos foram construídos do zero em vetor, para este caderno — não são reprodução de atlas. São esquemas de estudo: privilegiam a relação entre as estruturas, não a proporção exata.</p>
+  <nav class="indice" id="indice"></nav>
+</header>
+
+<div class="barra">
+  <span class="placar" id="placar">0 de 0 identificadas</span>
+  <button class="btn" id="btn-erros" disabled>Refazer erros</button>
+  <button class="btn" id="btn-recomecar">Recomeçar</button>
+</div>
+
+<main id="pranchas"></main>
+
+<a class="voltar rodape-voltar" href="index.html" style="border:1px solid var(--rule2);color:var(--ink2)">&larr; Portal de Estudos da Pri</a>
+<footer>
+  <b>Caderno autoral de estudo.</b> Pranchas em SVG e comentários escritos para este material, a partir do conteúdo das aulas e da bibliografia da disciplina. Uso pessoal e de estudo.
+</footer>
+
+</div>
+<script>
+const PRANCHAS = [
+/* ============ 1. MEDULA ESPINAL ============ */
+{
+id:"medula", meta:"Prancha 1", tit:"Medula espinal — corte transversal",
+desc:"Nível cervical baixo, com o dorso para cima. A substância cinzenta em borboleta ao centro; ao redor, os funículos, onde se organizam os tratos.",
+svg:`<svg viewBox="0 0 660 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Corte transversal da medula espinal">
+  <ellipse cx="330" cy="235" rx="248" ry="176" class="branca"/>
+  <path d="M330 60 L330 118" class="contorno-fino"/>
+  <path d="M330 352 L330 410" class="contorno" stroke-width="3"/>
+  <!-- substância cinzenta: metade esquerda + espelho -->
+  <g class="cinzenta">
+    <path id="cinza-e" d="M330 148 L300 148 Q272 146 258 132 Q240 114 232 132 Q226 148 250 166 Q272 182 282 196 Q262 200 250 212 Q238 226 246 250 Q256 276 284 288 Q306 298 330 298 Z"/>
+    <use href="#cinza-e" transform="translate(660,0) scale(-1,1)"/>
+    <rect x="318" y="206" width="24" height="34" rx="6"/>
+  </g>
+  <circle cx="330" cy="223" r="7" fill="#FCFCFE" stroke="#8A8FA3" stroke-width="1.4"/>
+  <!-- zonas de tratos -->
+  <path d="M300 148 Q300 108 306 84 L330 84 L330 148 Z" class="zona z-asc"/>
+  <path d="M258 132 Q252 104 246 86 L306 84 Q300 108 300 148 Z" class="zona z-asc"/>
+  <ellipse cx="466" cy="222" rx="40" ry="30" class="zona z-desc"/>
+  <ellipse cx="452" cy="300" rx="36" ry="27" class="zona z-asc"/>
+  <path d="M520 178 Q548 196 552 226 Q552 252 536 268 Q524 240 512 208 Z" class="zona z-asc"/>
+  <ellipse cx="368" cy="352" rx="30" ry="22" class="zona z-desc"/>
+  <path d="M330 300 L330 330" class="contorno-fino" stroke-dasharray="4 3"/>
+  <!-- marcadores -->
+  <g class="marc" data-i="1"><circle cx="314" cy="106" r="14"/><text x="314" y="106">1</text></g>
+  <g class="marc" data-i="2"><circle cx="262" cy="106" r="14"/><text x="262" y="106">2</text></g>
+  <g class="marc" data-i="3"><circle cx="268" cy="152" r="14"/><text x="268" y="152">3</text></g>
+  <g class="marc" data-i="4"><circle cx="330" cy="223" r="14"/><text x="330" y="223">4</text></g>
+  <g class="marc" data-i="5"><circle cx="286" cy="262" r="14"/><text x="286" y="262">5</text></g>
+  <g class="marc" data-i="6"><circle cx="466" cy="222" r="14"/><text x="466" y="222">6</text></g>
+  <g class="marc" data-i="7"><circle cx="452" cy="300" r="14"/><text x="452" y="300">7</text></g>
+  <g class="marc" data-i="8"><circle cx="532" cy="220" r="14"/><text x="532" y="220">8</text></g>
+  <!-- rótulos revelados -->
+  <text class="rot" id="rot-medula-1" x="304" y="46" text-anchor="middle">Fascículo grácil</text>
+  <text class="rot" id="rot-medula-2" x="150" y="60">Fascículo cuneiforme</text>
+  <text class="rot" id="rot-medula-3" x="20" y="150">Corno posterior</text>
+  <text class="rot" id="rot-medula-4" x="330" y="440" text-anchor="middle">Canal central</text>
+  <text class="rot" id="rot-medula-5" x="24" y="330">Corno anterior</text>
+  <text class="rot" id="rot-medula-6" x="600" y="150">Corticospinal lateral</text>
+  <text class="rot" id="rot-medula-7" x="600" y="368">Espinotalâmico lateral</text>
+  <text class="rot" id="rot-medula-8" x="586" y="240">Espinocerebelar</text>
+  <g class="guia" id="gui-medula-2"><path d="M176 66 L246 92"/></g>
+  <g class="guia" id="gui-medula-3"><path d="M108 146 L254 152"/></g>
+  <g class="guia" id="gui-medula-5"><path d="M110 326 L272 268"/></g>
+  <g class="guia" id="gui-medula-6"><path d="M596 156 L488 206"/></g>
+  <g class="guia" id="gui-medula-7"><path d="M596 362 L470 314"/></g>
+  <text class="rot-fixo" x="330" y="30" text-anchor="middle">DORSAL</text>
+  <text class="rot-fixo" x="330" y="462" text-anchor="middle">VENTRAL</text>
+</svg>`,
+itens:[
+ {n:1,perg:"Faixa mais medial do funículo posterior, junto à linha média.",
+  alts:["Fascículo grácil","Fascículo cuneiforme","Trato corticospinal anterior","Trato espinocerebelar posterior"],ok:0,
+  exp:"Grácil é medial e traz o membro inferior — a mnemônica GICS: Grácil-Inferior, Cuneiforme-Superior. As fibras que entram mais caudalmente ocupam a posição mais medial.",
+  err:{1:"O cuneiforme existe, mas ocupa a porção lateral do funículo posterior.",2:"O corticospinal anterior é descendente e fica no funículo anterior.",3:"O espinocerebelar posterior corre na periferia do funículo lateral."}},
+ {n:2,perg:"Porção lateral do funículo posterior, presente apenas acima de T6.",
+  alts:["Fascículo grácil","Fascículo cuneiforme","Trato rubrospinal","Coluna intermediolateral"],ok:1,
+  exp:"O cuneiforme conduz propriocepção e tato epicrítico do membro superior. Só existe acima de T6, porque abaixo desse nível não há aferência de membro superior para transportar.",
+  err:{0:"O grácil é medial e conduz o membro inferior.",2:"O rubrospinal é descendente, no funículo lateral.",3:"A coluna intermediolateral é substância cinzenta, entre T1 e L2."}},
+ {n:3,perg:"Projeção dorsal da substância cinzenta, onde terminam as fibras aferentes.",
+  alts:["Corno anterior","Corno posterior","Comissura branca anterior","Funículo lateral"],ok:1,
+  exp:"O corno posterior deriva da lâmina alar e recebe a raiz dorsal. No seu ápice está a substância gelatinosa, lâmina II de Rexed, onde a informação nociceptiva é modulada.",
+  err:{0:"O corno anterior é ventral e abriga o motoneurônio inferior.",2:"A comissura branca anterior é o ponto de cruzamento do espinotalâmico, ventral à cinzenta.",3:"O funículo lateral é substância branca."}},
+ {n:4,perg:"Pequena cavidade central, revestida de epêndima.",
+  alts:["Canal central","Comissura cinzenta","Sulco mediano posterior","Fissura mediana anterior"],ok:0,
+  exp:"O canal central contém líquor e é continuação do IV ventrículo. Sua dilatação anômala é a siringomielia, que interrompe as fibras espinotalâmicas ao cruzarem e produz anestesia termoalgésica suspensa, em capa.",
+  err:{1:"A comissura cinzenta é a ponte de substância cinzenta ao redor do canal, não a cavidade.",2:"O sulco mediano posterior é um sulco superficial, dorsal.",3:"A fissura mediana anterior é a profunda incisura ventral."}},
+ {n:5,perg:"Expansão ventral da substância cinzenta, volumosa nas intumescências.",
+  alts:["Corno posterior","Corno anterior","Núcleo torácico de Clarke","Trato espinotalâmico"],ok:1,
+  exp:"É a lâmina IX de Rexed, onde ficam os motoneurônios alfa. Sua lesão dá o padrão de neurônio motor inferior: flacidez, atrofia, fasciculação e arreflexia. É volumoso em C4-T1 e L2-S3, que inervam os membros.",
+  err:{0:"O corno posterior é dorsal e sensitivo.",2:"A coluna de Clarke fica na base do corno posterior, restrita a T1-L2.",3:"O espinotalâmico é trato de substância branca."}},
+ {n:6,perg:"Trato descendente do funículo lateral, ligado à motricidade distal fina.",
+  alts:["Trato espinotalâmico lateral","Trato corticospinal lateral","Fascículo grácil","Trato espinocerebelar anterior"],ok:1,
+  exp:"Recebe as fibras que cruzaram na decussação das pirâmides, no bulbo — 85 a 90% do total. Por isso a lesão acima da decussação dá déficit contralateral e a lesão medular dá déficit ipsilateral.",
+  err:{0:"O espinotalâmico é ascendente e ocupa a região anterolateral.",2:"O grácil é ascendente, no funículo posterior.",3:"O espinocerebelar anterior corre na periferia lateral e é ascendente."}},
+ {n:7,perg:"Trato ascendente da região anterolateral, que conduz dor e temperatura.",
+  alts:["Trato corticospinal lateral","Trato espinotalâmico lateral","Fascículo cuneiforme","Trato tectospinal"],ok:1,
+  exp:"Seu segundo neurônio cruza pela comissura branca anterior um ou dois segmentos acima da entrada. É esse cruzamento segmentar que produz a dissociação sensitiva de Brown-Séquard.",
+  err:{0:"O corticospinal lateral é descendente.",2:"O cuneiforme é ascendente, mas conduz tato epicrítico e propriocepção pelo funículo posterior.",3:"O tectospinal é descendente e fica no funículo anterior."}},
+ {n:8,perg:"Trato ascendente na periferia do funículo lateral, que leva propriocepção inconsciente ao cerebelo.",
+  alts:["Trato espinocerebelar","Trato corticospinal anterior","Fascículo grácil","Trato reticulospinal"],ok:0,
+  exp:"O posterior nasce na coluna de Clarke e sobe sem cruzar, entrando pelo pedúnculo cerebelar inferior. Como a informação não chega ao córtex, sua lesão não dá perda sensitiva perceptível — dá incoordenação.",
+  err:{1:"O corticospinal anterior é descendente e fica no funículo anterior.",2:"O grácil sobe pelo funículo posterior até o bulbo.",3:"O reticulospinal é descendente e modula tônus e postura."}}
+]},
+
+/* ============ 2. TRONCO ENCEFÁLICO ============ */
+{
+id:"tronco", meta:"Prancha 2", tit:"Tronco encefálico — face ventral e emergência dos nervos cranianos",
+desc:"Mesencéfalo, ponte e bulbo vistos de frente. Cada nervo craniano tem um ponto fixo de emergência: é esse ponto que localiza a lesão no eixo do tronco.",
+svg:`<svg viewBox="0 0 660 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Face ventral do tronco encefálico">
+  <!-- mesencéfalo -->
+  <path d="M258 66 Q244 108 250 146 L410 146 Q416 108 402 66 Z" class="branca"/>
+  <path d="M330 70 L330 146" class="contorno-fino"/>
+  <path d="M296 100 Q330 128 364 100" class="contorno-fino"/>
+  <!-- ponte -->
+  <path d="M234 152 Q198 200 218 250 Q246 268 330 268 Q414 268 442 250 Q462 200 426 152 Z" class="branca"/>
+  <path d="M240 176 Q330 190 420 176 M234 202 Q330 216 426 202 M242 228 Q330 240 418 228" class="contorno-fino"/>
+  <!-- bulbo -->
+  <path d="M252 268 Q244 340 250 412 Q268 434 330 434 Q392 434 410 412 Q416 340 408 268 Z" class="branca"/>
+  <path d="M312 274 Q306 350 310 428 M348 274 Q354 350 350 428" class="contorno-fino"/>
+  <ellipse cx="284" cy="330" rx="20" ry="34" class="branca"/>
+  <ellipse cx="376" cy="330" rx="20" ry="34" class="branca"/>
+  <path d="M262 434 L262 512 M398 434 L398 512" class="contorno"/>
+  <path d="M262 512 Q330 528 398 512" class="contorno"/>
+  <!-- nervos: hastes -->
+  <path d="M300 138 Q262 150 232 158 M360 138 Q398 150 428 158" class="contorno-fino" stroke-width="2"/>
+  <path d="M228 208 Q186 210 154 206 M432 208 Q474 210 506 206" class="contorno-fino" stroke-width="2"/>
+  <path d="M300 266 Q272 282 246 288 M360 266 Q388 282 414 288" class="contorno-fino" stroke-width="2"/>
+  <path d="M262 276 Q222 292 190 300 M398 276 Q438 292 470 300" class="contorno-fino" stroke-width="2"/>
+  <path d="M398 322 Q444 330 480 336 M262 322 Q216 330 180 336" class="contorno-fino" stroke-width="2"/>
+  <path d="M352 430 Q378 448 402 460 M308 430 Q282 448 258 460" class="contorno-fino" stroke-width="2"/>
+  <!-- quiasma -->
+  <path d="M288 44 Q330 26 372 44 Q352 62 330 62 Q308 62 288 44 Z" class="branca"/>
+  <!-- marcadores -->
+  <g class="marc" data-i="1"><circle cx="330" cy="44" r="14"/><text x="330" y="44">1</text></g>
+  <g class="marc" data-i="2"><circle cx="330" cy="112" r="14"/><text x="330" y="112">2</text></g>
+  <g class="marc" data-i="3"><circle cx="232" cy="158" r="14"/><text x="232" y="158">3</text></g>
+  <g class="marc" data-i="4"><circle cx="154" cy="206" r="14"/><text x="154" y="206">4</text></g>
+  <g class="marc" data-i="5"><circle cx="246" cy="288" r="14"/><text x="246" y="288">5</text></g>
+  <g class="marc" data-i="6"><circle cx="190" cy="300" r="14"/><text x="190" y="300">6</text></g>
+  <g class="marc" data-i="7"><circle cx="180" cy="336" r="14"/><text x="180" y="336">7</text></g>
+  <g class="marc" data-i="8"><circle cx="258" cy="462" r="14"/><text x="258" y="462">8</text></g>
+  <g class="marc" data-i="9"><circle cx="330" cy="352" r="14"/><text x="330" y="352">9</text></g>
+  <!-- rótulos -->
+  <text class="rot" id="rot-tronco-1" x="440" y="30">Quiasma óptico (II)</text>
+  <text class="rot" id="rot-tronco-2" x="440" y="104">Fossa interpeduncular</text>
+  <text class="rot" id="rot-tronco-3" x="8" y="140">Oculomotor (III)</text>
+  <text class="rot" id="rot-tronco-4" x="536" y="200">Trigêmeo (V)</text>
+  <text class="rot" id="rot-tronco-5" x="470" y="292">Abducente (VI)</text>
+  <text class="rot" id="rot-tronco-6" x="14" y="272">Facial (VII) e VIII</text>
+  <text class="rot" id="rot-tronco-7" x="14" y="374">IX, X e XI</text>
+  <text class="rot" id="rot-tronco-8" x="424" y="470">Hipoglosso (XII)</text>
+  <text class="rot" id="rot-tronco-9" x="330" y="548" text-anchor="middle">Pirâmide bulbar</text>
+  <g class="guia" id="gui-tronco-3"><path d="M100 146 L216 156"/></g>
+  <g class="guia" id="gui-tronco-4"><path d="M532 202 L172 204" stroke-dasharray="0"/></g>
+  <g class="guia" id="gui-tronco-6"><path d="M96 278 L176 296"/></g>
+  <g class="guia" id="gui-tronco-7"><path d="M62 368 L166 342"/></g>
+  <g class="guia" id="gui-tronco-9"><path d="M330 534 L330 366"/></g>
+  <text class="rot-fixo" x="470" y="112">Mesencéfalo</text>
+  <text class="rot-fixo" x="486" y="240">Ponte</text>
+  <text class="rot-fixo" x="470" y="400">Bulbo</text>
+</svg>`,
+itens:[
+ {n:1,perg:"Estrutura em X à frente do tronco, onde cruzam as fibras das hemirretinas nasais.",
+  alts:["Trato óptico","Quiasma óptico","Corpo geniculado lateral","Nervo olfatório"],ok:1,
+  exp:"No quiasma cruzam apenas as fibras nasais. Por isso sua lesão — classicamente por adenoma hipofisário — produz hemianopsia bitemporal: perde-se o campo visual periférico dos dois lados.",
+  err:{0:"O trato óptico é posterior ao quiasma e já contém fibras dos dois olhos; sua lesão dá hemianopsia homônima.",2:"O geniculado lateral é talâmico, bem posterior.",3:"O olfatório está sobre a lâmina cribriforme, à frente."}},
+ {n:2,perg:"Depressão entre os dois pedúnculos cerebrais, de onde emerge o III nervo.",
+  alts:["Sulco bulbopontino","Fossa interpeduncular","Sulco lateral do bulbo","Forame magno"],ok:1,
+  exp:"O oculomotor emerge aqui, na face ventral do mesencéfalo. Como suas fibras parassimpáticas correm na periferia do nervo, a compressão externa por herniação uncal atinge primeiro a pupila — midríase fixa.",
+  err:{0:"O sulco bulbopontino é a emergência do VI, VII e VIII.",2:"O sulco lateral do bulbo dá saída ao IX, X e XI.",3:"O forame magno é abertura óssea, não sulco do tronco."}},
+ {n:3,perg:"Nervo que emerge na fossa interpeduncular e inerva quase toda a musculatura extrínseca do olho.",
+  alts:["Oculomotor (III)","Troclear (IV)","Abducente (VI)","Óptico (II)"],ok:0,
+  exp:"O III inerva reto superior, reto inferior, reto medial, oblíquo inferior e elevador da pálpebra, além do esfíncter da pupila e do músculo ciliar. Sua lesão completa dá ptose, midríase e olho para baixo e para fora.",
+  err:{1:"O IV é o único de emergência dorsal, abaixo dos colículos inferiores.",2:"O VI emerge no sulco bulbopontino, medialmente.",3:"O II é sensitivo e não emerge do tronco: liga-se ao diencéfalo."}},
+ {n:4,perg:"Nervo que emerge da face lateral da ponte, com raízes sensitiva e motora.",
+  alts:["Facial (VII)","Trigêmeo (V)","Vestibulococlear (VIII)","Glossofaríngeo (IX)"],ok:1,
+  exp:"O trigêmeo é o grande sensitivo da face e motor da mastigação. Seus três ramos saem por forames distintos: V1 pela fissura orbital superior, V2 pelo forame redondo e V3 pelo oval.",
+  err:{0:"O VII emerge no sulco bulbopontino, mais caudal.",2:"O VIII acompanha o VII no sulco bulbopontino.",3:"O IX emerge do sulco lateral do bulbo."}},
+ {n:5,perg:"Nervo que emerge no sulco bulbopontino, próximo à linha média.",
+  alts:["Abducente (VI)","Facial (VII)","Hipoglosso (XII)","Trigêmeo (V)"],ok:0,
+  exp:"Vale a regra do assoalho: quanto mais medial, mais motor somático. O VI inerva o reto lateral, e sua lesão produz estrabismo convergente com diplopia horizontal.",
+  err:{1:"O VII emerge no mesmo sulco, porém lateralmente ao VI.",2:"O XII emerge do sulco lateral anterior do bulbo, entre pirâmide e oliva.",3:"O V emerge da face lateral da ponte."}},
+ {n:6,perg:"Par de nervos que emerge lateralmente no sulco bulbopontino e entra junto no meato acústico interno.",
+  alts:["III e IV","VI e VII","VII e VIII","IX e X"],ok:2,
+  exp:"Facial e vestibulococlear viajam lado a lado no meato acústico interno. É por essa vizinhança que o schwannoma vestibular, ao crescer, compromete também a mímica facial.",
+  err:{0:"III e IV são mesencefálicos e seguem para a órbita.",1:"O VI emerge medialmente e não entra no meato acústico.",3:"IX e X saem pelo forame jugular."}},
+ {n:7,perg:"Trio que emerge do sulco lateral posterior do bulbo e deixa o crânio pelo mesmo forame.",
+  alts:["V, VI e VII","IX, X e XI","X, XI e XII","VII, VIII e IX"],ok:1,
+  exp:"Glossofaríngeo, vago e acessório saem juntos pelo forame jugular, com a veia jugular interna. Uma massa de base de crânio nessa região produz disfagia, disfonia e fraqueza de trapézio ao mesmo tempo.",
+  err:{0:"São nervos de emergência pontina e do sulco bulbopontino.",2:"O XII sai isoladamente pelo canal do hipoglosso.",3:"VII e VIII entram no meato acústico interno."}},
+ {n:8,perg:"Nervo puramente motor que emerge entre a pirâmide e a oliva.",
+  alts:["Acessório (XI)","Hipoglosso (XII)","Vago (X)","Abducente (VI)"],ok:1,
+  exp:"O XII é motor da língua. Sua lesão desvia a ponta para o lado da lesão, porque o genioglosso íntegro empurra a língua para o lado oposto — e vem acompanhada de atrofia e fasciculações.",
+  err:{0:"O XI emerge do sulco lateral posterior e da medula cervical alta.",2:"O X emerge do sulco lateral posterior do bulbo.",3:"O VI emerge no sulco bulbopontino."}},
+ {n:9,perg:"Relevo longitudinal na face ventral do bulbo, por onde desce o trato corticospinal.",
+  alts:["Oliva","Pirâmide","Pedúnculo cerebelar médio","Sulco basilar"],ok:1,
+  exp:"As pirâmides carregam as fibras corticospinais, que decussam no seu extremo caudal. Como são estruturas mediais, ficam poupadas na síndrome bulbar lateral e comprometidas na bulbar medial.",
+  err:{0:"A oliva é o relevo ovalado lateral à pirâmide, abaixo dela o núcleo olivar inferior.",2:"O pedúnculo cerebelar médio liga a ponte ao cerebelo, lateralmente.",3:"O sulco basilar é o leito da artéria basilar, sobre a ponte."}}
+]}
+];
+PRANCHAS.push(
+/* ============ 3. SISTEMA VENTRICULAR ============ */
+{
+id:"ventriculos", meta:"Prancha 3", tit:"Sistema ventricular e circulação do líquor",
+desc:"Vista lateral esquemática das cavidades. Siga o trajeto do líquor: onde ele é produzido, por onde passa e onde é reabsorvido.",
+svg:`<svg viewBox="0 0 660 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sistema ventricular em vista lateral">
+  <path d="M120 250 Q104 150 190 92 Q300 32 430 66 Q548 100 566 196 Q582 292 470 340 Q360 386 240 356 Q150 332 120 250 Z" class="contorno-fino"/>
+  <!-- ventrículo lateral em C -->
+  <path d="M196 178 Q214 118 300 108 Q392 100 428 148 Q452 182 430 208 Q404 236 366 224 Q342 214 340 190 Q356 178 372 190 Q360 156 316 152 Q252 148 236 196 Q228 224 258 250 Q296 280 344 292 L330 316 Q262 306 216 268 Q182 236 196 178 Z" class="liq"/>
+  <!-- III ventrículo -->
+  <path d="M300 214 Q288 246 296 276 L336 276 Q344 246 334 214 Z" class="liq"/>
+  <!-- forame interventricular -->
+  <path d="M300 210 Q292 200 302 194" class="contorno-fino" stroke-width="2"/>
+  <!-- aqueduto -->
+  <path d="M336 276 Q356 296 372 314" class="liq" stroke-width="7" fill="none"/>
+  <!-- IV ventrículo -->
+  <path d="M372 314 Q404 306 424 322 Q408 348 378 352 Q360 336 372 314 Z" class="liq"/>
+  <!-- canal central -->
+  <path d="M392 352 Q396 388 400 424" class="liq" stroke-width="6" fill="none"/>
+  <!-- cerebelo esquemático -->
+  <path d="M424 300 Q490 296 508 336 Q490 372 428 364" class="contorno-fino"/>
+  <path d="M436 310 Q470 314 486 330 M432 326 Q470 330 492 344 M436 344 Q468 350 486 356" class="contorno-fino"/>
+  <!-- granulações e seio -->
+  <path d="M180 92 Q300 30 430 66" class="contorno-fino" stroke-width="3"/>
+  <circle cx="286" cy="52" r="9" class="liq"/><circle cx="316" cy="46" r="7" class="liq"/>
+  <!-- marcadores -->
+  <g class="marc" data-i="1"><circle cx="250" cy="170" r="14"/><text x="250" y="170">1</text></g>
+  <g class="marc" data-i="2"><circle cx="302" cy="200" r="14"/><text x="302" y="200">2</text></g>
+  <g class="marc" data-i="3"><circle cx="316" cy="248" r="14"/><text x="316" y="248">3</text></g>
+  <g class="marc" data-i="4"><circle cx="358" cy="298" r="14"/><text x="358" y="298">4</text></g>
+  <g class="marc" data-i="5"><circle cx="398" cy="334" r="14"/><text x="398" y="334">5</text></g>
+  <g class="marc" data-i="6"><circle cx="302" cy="46" r="14"/><text x="302" y="46">6</text></g>
+  <g class="marc" data-i="7"><circle cx="400" cy="404" r="14"/><text x="400" y="404">7</text></g>
+  <text class="rot" id="rot-ventriculos-1" x="40" y="130">Ventrículo lateral</text>
+  <text class="rot" id="rot-ventriculos-2" x="120" y="196">Forame interventricular</text>
+  <text class="rot" id="rot-ventriculos-3" x="150" y="256">III ventrículo</text>
+  <text class="rot" id="rot-ventriculos-4" x="176" y="300">Aqueduto do mesencéfalo</text>
+  <text class="rot" id="rot-ventriculos-5" x="530" y="404">IV ventrículo</text>
+  <text class="rot" id="rot-ventriculos-6" x="360" y="24">Granulações aracnóideas</text>
+  <text class="rot" id="rot-ventriculos-7" x="454" y="424">Canal central</text>
+  <g class="guia" id="gui-ventriculos-1"><path d="M154 126 L234 162"/></g>
+  <g class="guia" id="gui-ventriculos-2"><path d="M248 192 L286 198"/></g>
+  <g class="guia" id="gui-ventriculos-3"><path d="M234 252 L300 250"/></g>
+  <g class="guia" id="gui-ventriculos-4"><path d="M300 296 L342 298"/></g>
+  <g class="guia" id="gui-ventriculos-5"><path d="M526 398 L414 342"/></g>
+  <g class="guia" id="gui-ventriculos-7"><path d="M450 418 L414 406"/></g>
+</svg>`,
+itens:[
+ {n:1,perg:"Cavidade em forma de C, uma em cada hemisfério cerebral.",
+  alts:["III ventrículo","Ventrículo lateral","IV ventrículo","Cisterna magna"],ok:1,
+  exp:"Cada ventrículo lateral tem corno frontal, corpo, corno occipital e corno temporal, e abriga o maior plexo corióideo. É onde a produção de líquor começa.",
+  err:{0:"O III é ímpar e mediano, entre os tálamos.",2:"O IV é ímpar, entre tronco e cerebelo.",3:"A cisterna magna é espaço subaracnóideo, fora do sistema ventricular."}},
+ {n:2,perg:"Passagem que liga cada ventrículo lateral ao III ventrículo.",
+  alts:["Aqueduto do mesencéfalo","Forame interventricular","Abertura mediana","Forame jugular"],ok:1,
+  exp:"É o forame de Monro. Sua obstrução unilateral dilata apenas um ventrículo lateral — uma hidrocefalia assimétrica que ajuda a localizar a lesão.",
+  err:{0:"O aqueduto liga o III ao IV ventrículo.",2:"A abertura mediana, de Magendie, leva do IV ao espaço subaracnóideo.",3:"O forame jugular é passagem óssea de nervos e da veia jugular."}},
+ {n:3,perg:"Cavidade ímpar e mediana, situada entre os dois tálamos.",
+  alts:["Ventrículo lateral","III ventrículo","IV ventrículo","Aqueduto"],ok:1,
+  exp:"É uma fenda estreita no diencéfalo. Suas paredes são formadas por tálamo e hipotálamo, separados pelo sulco hipotalâmico — referência útil para orientar um corte sagital.",
+  err:{0:"Os laterais são pares e ficam nos hemisférios.",2:"O IV está entre a ponte, o bulbo e o cerebelo.",3:"O aqueduto é um canal, não uma cavidade ampla."}},
+ {n:4,perg:"Canal estreito que atravessa o mesencéfalo ligando o III ao IV ventrículo.",
+  alts:["Aqueduto do mesencéfalo","Forame interventricular","Abertura lateral","Fórnice"],ok:0,
+  exp:"É o ponto mais estreito de todo o sistema, e por isso o local clássico de estenose. A obstrução dilata os laterais e o III, deixando o IV normal — o padrão obstrutivo típico da imagem.",
+  err:{1:"O forame interventricular está acima, ligando lateral e III.",2:"As aberturas laterais, de Luschka, saem do IV para o subaracnóideo.",3:"O fórnice é feixe de substância branca do sistema límbico."}},
+ {n:5,perg:"Cavidade losângica entre a ponte, o bulbo e o cerebelo.",
+  alts:["III ventrículo","IV ventrículo","Ventrículo lateral","Cavum do septo"],ok:1,
+  exp:"Seu assoalho é a fossa romboide, onde se projetam relevos dos núcleos de nervos cranianos, como o colículo facial e o trígono do hipoglosso. Daqui o líquor ganha o espaço subaracnóideo pelas aberturas de Luschka e Magendie.",
+  err:{0:"O III é diencefálico, bem mais rostral.",2:"Os laterais são telencefálicos.",3:"O cavum do septo pelúcido é variação anatômica, sem circulação liquórica."}},
+ {n:6,perg:"Projeções que devolvem o líquor à circulação venosa, no seio sagital superior.",
+  alts:["Plexos corióideos","Granulações aracnóideas","Vilosidades do epêndima","Veias-ponte"],ok:1,
+  exp:"São expansões da aracnoide que se projetam para dentro do seio. O bloqueio dessa reabsorção — após hemorragia subaracnóidea ou meningite — causa hidrocefalia comunicante, em que todo o sistema dilata.",
+  err:{0:"Os plexos produzem o líquor; não o reabsorvem.",2:"O epêndima reveste as cavidades e participa da produção.",3:"As veias-ponte drenam sangue cortical; sua ruptura causa hematoma subdural."}},
+ {n:7,perg:"Continuação caudal da cavidade ventricular, dentro da medula espinal.",
+  alts:["Canal central","Fissura mediana anterior","Cisterna lombar","Filamento terminal"],ok:0,
+  exp:"É o resquício da luz do tubo neural. Sua dilatação patológica constitui a siringomielia, que se manifesta com anestesia termoalgésica suspensa por lesão da comissura branca anterior.",
+  err:{1:"A fissura mediana anterior é um sulco externo, ventral.",2:"A cisterna lombar é espaço subaracnóideo abaixo do cone, onde se punciona.",3:"O filamento terminal é prolongamento fibroso da pia-máter."}}
+]},
+
+/* ============ 4. CEREBELO ============ */
+{
+id:"cerebelo", meta:"Prancha 4", tit:"Cerebelo — corte sagital e pedúnculos",
+desc:"À esquerda, o corte mediano mostrando a árvore da vida e o núcleo denteado. À direita, os três pedúnculos e o que cada um transporta.",
+svg:`<svg viewBox="0 0 660 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cerebelo em corte sagital e pedúnculos">
+  <!-- corpo do cerebelo -->
+  <path d="M126 176 Q160 76 268 82 Q368 88 386 186 Q396 268 316 300 Q214 336 148 282 Q106 244 126 176 Z" class="branca"/>
+  <!-- arbor vitae -->
+  <path d="M254 254 Q248 214 232 186 Q216 158 190 146 M254 254 Q262 210 282 182 Q302 154 332 146 M254 254 Q252 282 250 300
+           M232 186 Q212 178 196 184 M232 186 Q222 166 206 160 M282 182 Q302 174 318 180 M282 182 Q292 162 308 156
+           M254 254 Q230 254 214 264 M254 254 Q280 254 296 264" class="contorno-fino"/>
+  <!-- folia -->
+  <path d="M140 168 Q158 92 260 90 M132 208 Q150 118 268 116" class="contorno-fino"/>
+  <!-- núcleo denteado -->
+  <path d="M300 208 Q320 198 332 214 Q340 232 326 244 Q308 250 300 236 Q294 222 300 208 Z" class="cinzenta"/>
+  <!-- flóculo-nodular -->
+  <ellipse cx="200" cy="300" rx="34" ry="20" class="branca"/>
+  <!-- tronco à esquerda -->
+  <path d="M64 120 Q52 200 62 280 Q78 306 108 306 L108 116 Q86 108 64 120 Z" class="branca"/>
+  <path d="M108 156 Q132 158 150 156 M108 208 Q136 212 158 208 M108 258 Q134 262 152 260" class="contorno-fino" stroke-width="2.4"/>
+  <!-- lado direito: esquema dos pedúnculos -->
+  <path d="M470 96 L470 330" class="contorno-fino"/>
+  <path d="M470 140 L560 140 M470 210 L560 210 M470 280 L560 280" class="contorno-fino" stroke-width="2.4"/>
+  <text class="rot-fixo" x="566" y="144">para o tálamo</text>
+  <text class="rot-fixo" x="566" y="214">da ponte</text>
+  <text class="rot-fixo" x="566" y="284">do bulbo</text>
+  <text class="rot-fixo" x="420" y="86">Pedúnculos</text>
+  <!-- marcadores -->
+  <g class="marc" data-i="1"><circle cx="254" cy="200" r="14"/><text x="254" y="200">1</text></g>
+  <g class="marc" data-i="2"><circle cx="316" cy="226" r="14"/><text x="316" y="226">2</text></g>
+  <g class="marc" data-i="3"><circle cx="200" cy="300" r="14"/><text x="200" y="300">3</text></g>
+  <g class="marc" data-i="4"><circle cx="130" cy="156" r="14"/><text x="130" y="156">4</text></g>
+  <g class="marc" data-i="5"><circle cx="132" cy="210" r="14"/><text x="132" y="210">5</text></g>
+  <g class="marc" data-i="6"><circle cx="130" cy="260" r="14"/><text x="130" y="260">6</text></g>
+  <text class="rot" id="rot-cerebelo-1" x="240" y="46">Árvore da vida</text>
+  <text class="rot" id="rot-cerebelo-2" x="392" y="252">Núcleo denteado</text>
+  <text class="rot" id="rot-cerebelo-3" x="152" y="360">Lobo floculonodular</text>
+  <text class="rot" id="rot-cerebelo-4" x="196" y="128">Pedúnculo superior</text>
+  <text class="rot" id="rot-cerebelo-5" x="200" y="200">Pedúnculo médio</text>
+  <text class="rot" id="rot-cerebelo-6" x="196" y="286">Pedúnculo inferior</text>
+  <g class="guia" id="gui-cerebelo-1"><path d="M258 56 L254 186"/></g>
+  <g class="guia" id="gui-cerebelo-2"><path d="M388 246 L334 230"/></g>
+  <g class="guia" id="gui-cerebelo-3"><path d="M206 348 L202 316"/></g>
+</svg>`,
+itens:[
+ {n:1,perg:"Substância branca central ramificada, vista no corte sagital.",
+  alts:["Córtex cerebelar","Árvore da vida","Núcleo fastigial","Véu medular"],ok:1,
+  exp:"É o corpo medular do cerebelo, cujo desenho ramificado lembra uma árvore. Por ele passam as aferências que chegam ao córtex e as eferências que saem dos núcleos centrais.",
+  err:{0:"O córtex é a fina camada cinzenta na superfície das folhas.",2:"O fastigial é um dos núcleos centrais, junto à linha média.",3:"O véu medular é a lâmina fina que forma o teto do IV ventrículo."}},
+ {n:2,perg:"Maior dos núcleos centrais do cerebelo, com aspecto pregueado.",
+  alts:["Núcleo denteado","Núcleo olivar inferior","Núcleo rubro","Núcleo vestibular"],ok:0,
+  exp:"O denteado é a via de saída do neocerebelo: projeta-se pelo pedúnculo superior ao tálamo contralateral e daí ao córtex motor. É essa decussação, somada à das pirâmides, que torna os sinais cerebelares ipsilaterais.",
+  err:{1:"O olivar inferior é bulbar e envia fibras trepadeiras ao cerebelo.",2:"O rubro é mesencefálico.",3:"Os vestibulares estão no tronco, no assoalho do IV ventrículo."}},
+ {n:3,perg:"Porção filogeneticamente mais antiga, ligada aos núcleos vestibulares.",
+  alts:["Neocerebelo","Lobo floculonodular","Núcleo interpósito","Tonsila cerebelar"],ok:1,
+  exp:"É o arquicerebelo, responsável por equilíbrio e controle do olhar. Sua lesão — como no meduloblastoma de linha média da criança — dá ataxia de tronco e de marcha com pouca alteração dos membros.",
+  err:{0:"O neocerebelo corresponde aos hemisférios laterais, ligados ao planejamento motor.",2:"O interpósito é núcleo central, formado por globoso e emboliforme.",3:"A tonsila é a porção que hernia no forame magno, sem essa função vestibular."}},
+ {n:4,perg:"Pedúnculo que conduz a principal via de saída do cerebelo, rumo ao tálamo.",
+  alts:["Pedúnculo cerebelar superior","Pedúnculo cerebelar médio","Pedúnculo cerebelar inferior","Corpo caloso"],ok:0,
+  exp:"É essencialmente eferente: leva as fibras do denteado, que cruzam ainda no mesencéfalo e alcançam o núcleo VL do tálamo contralateral, fechando a alça sobre o córtex motor.",
+  err:{1:"O médio é aferente, vindo dos núcleos pontinos.",2:"O inferior traz entradas da medula, da oliva e dos vestibulares.",3:"O corpo caloso é comissura entre hemisférios cerebrais."}},
+ {n:5,perg:"Maior dos pedúnculos, quase inteiramente aferente, vindo da ponte.",
+  alts:["Pedúnculo cerebelar superior","Pedúnculo cerebelar médio","Pedúnculo cerebelar inferior","Fórnice"],ok:1,
+  exp:"Fecha a via córtico-ponto-cerebelar: o córtex projeta aos núcleos pontinos ipsilaterais e daí as fibras cruzam para o hemisfério cerebelar oposto. É por aqui que o cérebro informa ao cerebelo o movimento que planejou.",
+  err:{0:"O superior é a via de saída.",2:"O inferior recebe medula, oliva e vestibulares.",3:"O fórnice pertence ao circuito límbico."}},
+ {n:6,perg:"Pedúnculo por onde entram o trato espinocerebelar posterior e as fibras olivocerebelares.",
+  alts:["Pedúnculo cerebelar superior","Pedúnculo cerebelar médio","Pedúnculo cerebelar inferior","Lemnisco medial"],ok:2,
+  exp:"Traz propriocepção inconsciente vinda da coluna de Clarke, sem cruzar, e as fibras trepadeiras da oliva inferior, essenciais ao aprendizado motor. Também é a porta das aferências vestibulares.",
+  err:{0:"O superior é eferente, do denteado ao tálamo.",1:"O médio é aferente, mas vem dos núcleos pontinos.",3:"O lemnisco medial é via sensitiva ascendente, não pedúnculo cerebelar."}}
+]}
+);
+PRANCHAS.push(
+/* ============ 5. CORTE CORONAL ============ */
+{
+id:"coronal", meta:"Prancha 5", tit:"Corte coronal — núcleos da base, tálamo e cápsula interna",
+desc:"Corte frontal ao nível dos tálamos. É aqui que se entende por que uma lacuna pequena, em território de artéria perfurante, produz hemiplegia completa.",
+svg:`<svg viewBox="0 0 660 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Corte coronal do encéfalo">
+  <path d="M330 44 Q470 44 552 130 Q612 194 596 288 Q580 372 494 396 L166 396 Q80 372 64 288 Q48 194 108 130 Q190 44 330 44 Z" class="branca"/>
+  <path d="M330 44 L330 128" class="contorno-fino"/>
+  <!-- corpo caloso -->
+  <path d="M200 148 Q264 118 330 120 Q396 118 460 148 Q400 168 330 166 Q260 168 200 148 Z" class="cinzenta" fill="#EAEAF3"/>
+  <!-- ventrículos laterais -->
+  <path d="M262 172 Q296 168 306 190 Q296 208 268 202 Q248 192 262 172 Z" class="liq"/>
+  <path d="M398 172 Q364 168 354 190 Q364 208 392 202 Q412 192 398 172 Z" class="liq"/>
+  <!-- caudado -->
+  <path d="M258 168 Q286 170 296 192 Q276 196 260 188 Q250 178 258 168 Z" class="cinzenta"/>
+  <path d="M402 168 Q374 170 364 192 Q384 196 400 188 Q410 178 402 168 Z" class="cinzenta"/>
+  <!-- tálamo -->
+  <path d="M300 214 Q330 206 360 214 Q372 244 356 268 Q330 278 304 268 Q288 244 300 214 Z" class="cinzenta"/>
+  <path d="M330 208 L330 274" class="contorno-fino"/>
+  <!-- III ventrículo -->
+  <rect x="322" y="212" width="16" height="64" rx="6" class="liq"/>
+  <!-- putame e pálido -->
+  <path d="M232 200 Q262 196 272 230 Q276 262 250 274 Q222 274 212 244 Q210 216 232 200 Z" class="cinzenta"/>
+  <path d="M276 224 Q292 226 294 248 Q290 266 274 264 Q266 244 276 224 Z" class="cinzenta" fill="#CFCBD9"/>
+  <path d="M428 200 Q398 196 388 230 Q384 262 410 274 Q438 274 448 244 Q450 216 428 200 Z" class="cinzenta"/>
+  <path d="M384 224 Q368 226 366 248 Q370 266 386 264 Q394 244 384 224 Z" class="cinzenta" fill="#CFCBD9"/>
+  <!-- cápsula interna (faixa entre lentiforme e tálamo/caudado) -->
+  <path d="M296 186 Q286 214 292 246 Q298 272 312 288 L326 282 Q306 250 302 214 Q300 196 306 184 Z" class="zona z-desc"/>
+  <path d="M364 186 Q374 214 368 246 Q362 272 348 288 L334 282 Q354 250 358 214 Q360 196 354 184 Z" class="zona z-desc"/>
+  <!-- tronco -->
+  <path d="M296 300 Q330 292 364 300 Q374 348 356 386 L304 386 Q286 348 296 300 Z" class="branca"/>
+  <!-- marcadores -->
+  <g class="marc" data-i="1"><circle cx="330" cy="142" r="14"/><text x="330" y="142">1</text></g>
+  <g class="marc" data-i="2"><circle cx="278" cy="186" r="14"/><text x="278" y="186">2</text></g>
+  <g class="marc" data-i="3"><circle cx="240" cy="234" r="14"/><text x="240" y="234">3</text></g>
+  <g class="marc" data-i="4"><circle cx="282" cy="246" r="14"/><text x="282" y="246">4</text></g>
+  <g class="marc" data-i="5"><circle cx="330" cy="240" r="14"/><text x="330" y="240">5</text></g>
+  <g class="marc" data-i="6"><circle cx="304" cy="250" r="13"/><text x="304" y="250">6</text></g>
+  <g class="marc" data-i="7"><circle cx="392" cy="186" r="14"/><text x="392" y="186">7</text></g>
+  <text class="rot" id="rot-coronal-1" x="330" y="90" text-anchor="middle">Corpo caloso</text>
+  <text class="rot" id="rot-coronal-2" x="128" y="150">Núcleo caudado</text>
+  <text class="rot" id="rot-coronal-3" x="36" y="230">Putame</text>
+  <text class="rot" id="rot-coronal-4" x="34" y="292">Globo pálido</text>
+  <text class="rot" id="rot-coronal-5" x="500" y="330">Tálamo</text>
+  <text class="rot" id="rot-coronal-6" x="112" y="352">Cápsula interna</text>
+  <text class="rot" id="rot-coronal-7" x="480" y="150">Ventrículo lateral</text>
+  <g class="guia" id="gui-coronal-1"><path d="M330 100 L330 128"/></g>
+  <g class="guia" id="gui-coronal-2"><path d="M196 146 L264 180"/></g>
+  <g class="guia" id="gui-coronal-3"><path d="M84 226 L216 232"/></g>
+  <g class="guia" id="gui-coronal-4"><path d="M92 286 L266 254"/></g>
+  <g class="guia" id="gui-coronal-5"><path d="M496 324 L348 254"/></g>
+  <g class="guia" id="gui-coronal-6"><path d="M176 346 L292 262"/></g>
+  <g class="guia" id="gui-coronal-7"><path d="M476 156 L406 180"/></g>
+</svg>`,
+itens:[
+ {n:1,perg:"Grande feixe de fibras comissurais que une os dois hemisférios.",
+  alts:["Fórnice","Corpo caloso","Cápsula interna","Comissura anterior"],ok:1,
+  exp:"É a maior comissura do encéfalo. Fibras comissurais cruzam a linha média; as de associação ligam áreas de um mesmo hemisfério; as de projeção descem para estruturas subcorticais.",
+  err:{0:"O fórnice liga hipocampo a corpos mamilares, dentro do circuito límbico.",2:"A cápsula interna é feixe de projeção, não comissural.",3:"A comissura anterior é comissural, porém muito menor e mais ventral."}},
+ {n:2,perg:"Núcleo em forma de C que acompanha o contorno do ventrículo lateral.",
+  alts:["Putame","Núcleo caudado","Globo pálido","Claustro"],ok:1,
+  exp:"Cabeça, corpo e cauda do caudado seguem a curvatura do ventrículo. Com o putame forma o corpo estriado, a entrada dos núcleos da base — e é sua degeneração que produz a coreia da doença de Huntington.",
+  err:{0:"O putame é lateral, separado do caudado pela cápsula interna.",2:"O globo pálido é medial ao putame e é a saída dos núcleos da base.",3:"O claustro é uma lâmina fina entre putame e ínsula."}},
+ {n:3,perg:"Núcleo lateral à cápsula interna, que forma o lentiforme junto com o pálido.",
+  alts:["Putame","Núcleo caudado","Tálamo","Núcleo subtalâmico"],ok:0,
+  exp:"O putame recebe aferência cortical maciça e é alvo preferencial das artérias lenticuloestriadas — daí o hematoma putaminal ser o padrão clássico da hemorragia hipertensiva.",
+  err:{1:"O caudado é medial à cápsula interna, junto ao ventrículo.",2:"O tálamo é diencefálico e fica medial e posterior.",3:"O subtalâmico é menor e situa-se abaixo do tálamo."}},
+ {n:4,perg:"Porção medial do núcleo lentiforme, de coloração mais clara, que é a via de saída dos núcleos da base.",
+  alts:["Putame","Globo pálido","Claustro","Núcleo accumbens"],ok:1,
+  exp:"O segmento interno do pálido projeta-se ao tálamo de forma inibitória. No Parkinson ele fica hiperativo e inibe demais o tálamo — motivo pelo qual é alvo de estimulação cerebral profunda.",
+  err:{0:"O putame é a porção lateral do lentiforme e é entrada, não saída.",2:"O claustro é externo ao putame.",3:"O accumbens fica ventralmente, na junção caudado-putame."}},
+ {n:5,perg:"Massa cinzenta ovalada que forma a parede lateral do III ventrículo.",
+  alts:["Hipotálamo","Tálamo","Núcleo caudado","Corpo caloso"],ok:1,
+  exp:"É a estação obrigatória de toda sensibilidade, exceto a olfação: VPL para o corpo, VPM para a face, geniculado lateral para a visão e medial para a audição. Também fecha as alças motoras pelos núcleos VA e VL.",
+  err:{0:"O hipotálamo está abaixo do sulco hipotalâmico, mais ventral.",2:"O caudado acompanha o ventrículo lateral, mais dorsal e lateral.",3:"O corpo caloso é substância branca, acima dos ventrículos."}},
+ {n:6,perg:"Lâmina de substância branca entre o núcleo lentiforme e o conjunto tálamo-caudado.",
+  alts:["Cápsula externa","Cápsula interna","Corpo caloso","Coroa radiada"],ok:1,
+  exp:"Concentra num espaço mínimo as fibras corticospinais, corticonucleares e talamocorticais. Por isso uma lacuna de poucos milímetros ali produz hemiplegia completa, sem afasia e sem alteração de campo visual.",
+  err:{0:"A cápsula externa fica entre putame e claustro, e carrega fibras de associação.",2:"O corpo caloso é comissural e está acima.",3:"A coroa radiada é a continuação em leque da cápsula interna, já acima dela."}},
+ {n:7,perg:"Cavidade em forma de fenda logo abaixo do corpo caloso, ao lado da linha média.",
+  alts:["III ventrículo","Ventrículo lateral","Aqueduto","Cisterna interpeduncular"],ok:1,
+  exp:"No corte coronal aparece como uma fenda curva sob o corpo caloso, tendo o caudado na sua parede lateral. Sua dilatação assimétrica sugere obstrução do forame interventricular daquele lado.",
+  err:{0:"O III é mediano e ímpar, entre os tálamos.",2:"O aqueduto está no mesencéfalo, bem mais caudal.",3:"A cisterna interpeduncular é espaço subaracnóideo, ventral ao mesencéfalo."}}
+]},
+
+/* ============ 6. CÓRTEX ============ */
+{
+id:"cortex", meta:"Prancha 6", tit:"Córtex cerebral — face lateral do hemisfério esquerdo",
+desc:"Lobos, sulcos de referência e as áreas cuja lesão tem tradução clínica imediata. O sulco central é o divisor de águas entre o que comanda e o que sente.",
+svg:`<svg viewBox="0 0 660 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Face lateral do hemisfério cerebral esquerdo">
+  <path d="M92 226 Q92 132 190 84 Q300 30 424 62 Q548 94 570 200 Q586 288 500 330 Q396 378 268 358 Q140 336 104 272 Q92 250 92 226 Z" class="branca"/>
+  <!-- sulco central -->
+  <path d="M300 66 Q322 140 344 208" class="contorno" stroke-width="2.6"/>
+  <!-- sulco lateral -->
+  <path d="M164 250 Q262 262 356 250 Q420 240 470 210" class="contorno" stroke-width="2.6"/>
+  <!-- parieto-occipital -->
+  <path d="M496 108 Q470 160 476 206" class="contorno-fino" stroke-width="2"/>
+  <!-- giros pré e pós-central -->
+  <path d="M272 74 Q294 146 316 214" class="contorno-fino"/>
+  <path d="M328 62 Q350 138 372 206" class="contorno-fino"/>
+  <!-- sulcos decorativos -->
+  <path d="M150 150 Q210 138 250 120 M136 196 Q200 190 244 176 M400 120 Q450 130 486 122 M404 168 Q446 178 478 172
+           M210 300 Q280 312 350 300 M240 330 Q300 340 366 328 M500 250 Q536 258 556 250" class="contorno-fino"/>
+  <!-- marcadores -->
+  <g class="marc" data-i="1"><circle cx="288" cy="140" r="14"/><text x="288" y="140">1</text></g>
+  <g class="marc" data-i="2"><circle cx="348" cy="132" r="14"/><text x="348" y="132">2</text></g>
+  <g class="marc" data-i="3"><circle cx="204" cy="212" r="14"/><text x="204" y="212">3</text></g>
+  <g class="marc" data-i="4"><circle cx="418" cy="286" r="14"/><text x="418" y="286">4</text></g>
+  <g class="marc" data-i="5"><circle cx="528" cy="176" r="14"/><text x="528" y="176">5</text></g>
+  <g class="marc" data-i="6"><circle cx="258" cy="308" r="14"/><text x="258" y="308">6</text></g>
+  <g class="marc" data-i="7"><circle cx="322" cy="120" r="13"/><text x="322" y="120">7</text></g>
+  <text class="rot" id="rot-cortex-1" x="220" y="34">Giro pré-central</text>
+  <text class="rot" id="rot-cortex-2" x="376" y="34">Giro pós-central</text>
+  <text class="rot" id="rot-cortex-3" x="14" y="180">Área de Broca</text>
+  <text class="rot" id="rot-cortex-4" x="446" y="358">Área de Wernicke</text>
+  <text class="rot" id="rot-cortex-5" x="592" y="150">Lobo occipital</text>
+  <text class="rot" id="rot-cortex-6" x="120" y="392">Lobo temporal</text>
+  <text class="rot" id="rot-cortex-7" x="382" y="88">Sulco central</text>
+  <g class="guia" id="gui-cortex-1"><path d="M262 42 L286 124"/></g>
+  <g class="guia" id="gui-cortex-2"><path d="M392 42 L354 116"/></g>
+  <g class="guia" id="gui-cortex-3"><path d="M92 176 L188 206"/></g>
+  <g class="guia" id="gui-cortex-4"><path d="M442 352 L426 302"/></g>
+  <g class="guia" id="gui-cortex-5"><path d="M588 156 L544 172"/></g>
+  <g class="guia" id="gui-cortex-6"><path d="M180 386 L250 324"/></g>
+  <g class="guia" id="gui-cortex-7"><path d="M378 94 L336 114"/></g>
+</svg>`,
+itens:[
+ {n:1,perg:"Giro imediatamente à frente do sulco central, sede da área motora primária.",
+  alts:["Giro pré-central","Giro pós-central","Giro frontal superior","Giro supramarginal"],ok:0,
+  exp:"É a área 4 de Brodmann. A representação corporal desce da face medial — onde está o membro inferior, irrigado pela cerebral anterior — para a convexidade lateral, com face e mão em território de cerebral média.",
+  err:{1:"O pós-central é somestésico, atrás do sulco central.",2:"O frontal superior está acima e à frente, ligado a planejamento.",3:"O supramarginal é parietal inferior, ligado à linguagem e ao esquema corporal."}},
+ {n:2,perg:"Giro logo atrás do sulco central, sede da área somestésica primária.",
+  alts:["Giro pré-central","Giro pós-central","Giro temporal superior","Lóbulo paracentral"],ok:1,
+  exp:"Corresponde às áreas 3, 1 e 2 e recebe o terceiro neurônio vindo do VPL e do VPM do tálamo. Sua lesão produz déficit sensitivo contralateral, sem paresia.",
+  err:{0:"O pré-central é motor e fica à frente do sulco.",2:"O temporal superior abriga o córtex auditivo.",3:"O lóbulo paracentral está na face medial, representando o membro inferior."}},
+ {n:3,perg:"Região do giro frontal inferior cuja lesão produz fala não fluente com compreensão preservada.",
+  alts:["Área de Wernicke","Área de Broca","Área motora suplementar","Giro angular"],ok:1,
+  exp:"Áreas 44 e 45, no hemisfério dominante. Fica logo à frente da representação motora da face — daí a afasia de Broca vir tantas vezes acompanhada de hemiparesia braquiofacial direita.",
+  err:{0:"Wernicke é temporal posterior; sua lesão dá fala fluente sem sentido e compreensão ruim.",2:"A motora suplementar é medial e superior, ligada à iniciação do movimento.",3:"O giro angular é parietal, ligado a leitura e cálculo."}},
+ {n:4,perg:"Região do giro temporal superior posterior, essencial à compreensão da linguagem.",
+  alts:["Área de Broca","Área de Wernicke","Córtex visual primário","Ínsula"],ok:1,
+  exp:"Área 22. O paciente fala com fluência e prosódia normais, porém sem sentido, e não percebe o próprio erro. O fascículo arqueado a conecta a Broca: se apenas ele for lesado, surge a afasia de condução.",
+  err:{0:"Broca é frontal inferior; sua lesão dá fala esforçada com compreensão preservada.",2:"O córtex visual está no occipital, ao redor do sulco calcarino.",3:"A ínsula fica no fundo do sulco lateral, encoberta pelos opérculos."}},
+ {n:5,perg:"Lobo posterior, onde se localiza o córtex visual primário.",
+  alts:["Lobo parietal","Lobo occipital","Lobo temporal","Lobo frontal"],ok:1,
+  exp:"O córtex estriado ocupa as margens do sulco calcarino, na face medial. A mácula está representada no polo posterior, o que explica a preservação macular em alguns infartos da artéria cerebral posterior.",
+  err:{0:"O parietal processa somestesia e atenção espacial.",2:"O temporal abriga audição, memória e linguagem receptiva.",3:"O frontal é motor, executivo e de conduta social."}},
+ {n:6,perg:"Lobo situado abaixo do sulco lateral, que abriga o córtex auditivo e o hipocampo.",
+  alts:["Lobo frontal","Lobo temporal","Lobo occipital","Lobo da ínsula"],ok:1,
+  exp:"Reúne o giro temporal transverso (áreas 41 e 42) e, na face medial, hipocampo e amígdala. É também o lobo cujo úncus hernia sobre o III nervo, produzindo midríase fixa.",
+  err:{0:"O frontal está acima e à frente do sulco lateral.",2:"O occipital é posterior.",3:"A ínsula está no fundo do sulco lateral, encoberta."}},
+ {n:7,perg:"Sulco que separa o lobo frontal do lobo parietal.",
+  alts:["Sulco lateral","Sulco central","Sulco parieto-occipital","Sulco calcarino"],ok:1,
+  exp:"O sulco central, ou de Rolando, separa o giro pré-central do pós-central — ou seja, o comando motor da recepção sensitiva. É a primeira referência a encontrar em qualquer face lateral.",
+  err:{0:"O sulco lateral, de Sylvius, separa o temporal do frontal e do parietal.",2:"O parieto-occipital fica na face medial, atrás.",3:"O calcarino está no occipital medial, junto ao córtex visual."}}
+]}
+);
+const SVGS = {
+
+medula:`<svg viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Corte transversal da medula espinal">
+ <ellipse cx="450" cy="228" rx="204" ry="152" class="branca"/>
+ <path d="M450 76 L450 150" class="contorno-fino"/>
+ <path d="M450 306 L450 380" class="contorno" stroke-width="3"/>
+ <ellipse cx="438" cy="112" rx="14" ry="24" class="zona z-asc"/>
+ <ellipse cx="396" cy="106" rx="22" ry="19" class="zona z-asc"/>
+ <ellipse cx="558" cy="226" rx="32" ry="25" class="zona z-desc"/>
+ <ellipse cx="548" cy="304" rx="30" ry="23" class="zona z-asc"/>
+ <ellipse cx="614" cy="250" rx="14" ry="32" class="zona z-asc"/>
+ <path fill="#DEDCE6" d="M450 162 C432 154 410 138 392 122 C380 114 366 120 370 132 C376 150 396 172 410 188
+   C400 196 398 204 400 212 C386 220 364 230 350 248 C338 264 346 286 368 292 C394 298 426 296 442 290 L450 288
+   L458 290 C474 296 506 298 532 292 C554 286 562 264 550 248 C536 230 514 220 500 212
+   C502 204 500 196 490 188 C504 172 524 150 530 132 C534 120 520 114 508 122 C490 138 468 154 450 162 Z"/>
+ <circle cx="450" cy="226" r="8" fill="#FCFCFE" stroke="#8A8FA3" stroke-width="1.4"/>
+ <g class="marc" data-i="1"><circle cx="438" cy="112" r="13"/><text x="438" y="112">1</text></g>
+ <g class="marc" data-i="2"><circle cx="396" cy="106" r="13"/><text x="396" y="106">2</text></g>
+ <g class="marc" data-i="3"><circle cx="398" cy="158" r="13"/><text x="398" y="158">3</text></g>
+ <g class="marc" data-i="4"><circle cx="450" cy="226" r="13"/><text x="450" y="226">4</text></g>
+ <g class="marc" data-i="5"><circle cx="374" cy="264" r="13"/><text x="374" y="264">5</text></g>
+ <g class="marc" data-i="6"><circle cx="558" cy="226" r="13"/><text x="558" y="226">6</text></g>
+ <g class="marc" data-i="7"><circle cx="548" cy="304" r="13"/><text x="548" y="304">7</text></g>
+ <g class="marc" data-i="8"><circle cx="614" cy="250" r="13"/><text x="614" y="250">8</text></g>
+ <text class="rot" id="rot-medula-1" x="452" y="46" text-anchor="middle">Fascículo grácil</text>
+ <g class="guia" id="gui-medula-1"><path d="M448 56 L440 96"/></g>
+ <text class="rot" id="rot-medula-2" x="196" y="70" text-anchor="end">Fascículo cuneiforme</text>
+ <g class="guia" id="gui-medula-2"><path d="M204 64 L378 98"/></g>
+ <text class="rot" id="rot-medula-3" x="196" y="162" text-anchor="end">Corno posterior</text>
+ <g class="guia" id="gui-medula-3"><path d="M204 158 L384 158"/></g>
+ <text class="rot" id="rot-medula-4" x="450" y="428" text-anchor="middle">Canal central</text>
+ <g class="guia" id="gui-medula-4"><path d="M450 414 L450 244"/></g>
+ <text class="rot" id="rot-medula-5" x="196" y="300" text-anchor="end">Corno anterior</text>
+ <g class="guia" id="gui-medula-5"><path d="M204 296 L360 268"/></g>
+ <text class="rot" id="rot-medula-6" x="706" y="176" text-anchor="start">Trato corticospinal lateral</text>
+ <g class="guia" id="gui-medula-6"><path d="M698 172 L578 212"/></g>
+ <text class="rot" id="rot-medula-7" x="706" y="332" text-anchor="start">Trato espinotalâmico lateral</text>
+ <g class="guia" id="gui-medula-7"><path d="M698 328 L570 312"/></g>
+ <text class="rot" id="rot-medula-8" x="706" y="252" text-anchor="start">Trato espinocerebelar</text>
+ <g class="guia" id="gui-medula-8"><path d="M698 248 L630 250"/></g>
+ <text class="rot-fixo" x="706" y="40" text-anchor="start">DORSAL</text>
+ <text class="rot-fixo" x="706" y="440" text-anchor="start">VENTRAL</text>
+</svg>`,
+
+tronco:`<svg viewBox="0 0 900 590" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Face ventral do tronco encefálico">
+ <path d="M400 60 Q450 42 500 60 Q478 82 450 82 Q422 82 400 60 Z" class="branca"/>
+ <path d="M378 100 Q364 142 372 182 L528 182 Q536 142 522 100 Z" class="branca"/>
+ <path d="M450 104 L450 182" class="contorno-fino"/>
+ <path d="M414 134 Q450 162 486 134" class="contorno-fino"/>
+ <path d="M356 188 Q318 236 338 288 Q368 306 450 306 Q532 306 562 288 Q582 236 544 188 Z" class="branca"/>
+ <path d="M362 212 Q450 226 538 212 M356 240 Q450 254 544 240 M364 268 Q450 280 536 268" class="contorno-fino"/>
+ <path d="M372 306 Q364 380 370 452 Q388 474 450 474 Q512 474 530 452 Q536 380 528 306 Z" class="branca"/>
+ <path d="M430 312 Q424 392 428 468 M470 312 Q476 392 472 468" class="contorno-fino"/>
+ <ellipse cx="404" cy="370" rx="19" ry="33" class="branca"/>
+ <ellipse cx="496" cy="370" rx="19" ry="33" class="branca"/>
+ <path d="M382 474 L382 548 M518 474 L518 548" class="contorno"/>
+ <path d="M418 176 Q384 190 356 196 M482 176 Q516 190 544 196" class="contorno-fino" stroke-width="2"/>
+ <path d="M352 244 Q322 246 300 244 M548 244 Q578 246 600 244" class="contorno-fino" stroke-width="2"/>
+ <path d="M420 304 Q396 318 374 324 M480 304 Q504 318 526 324" class="contorno-fino" stroke-width="2"/>
+ <path d="M384 316 Q350 330 322 338 M516 316 Q550 330 578 338" class="contorno-fino" stroke-width="2"/>
+ <path d="M382 362 Q344 372 312 378 M518 362 Q556 372 588 378" class="contorno-fino" stroke-width="2"/>
+ <path d="M428 470 Q404 488 382 500 M472 470 Q496 488 518 500" class="contorno-fino" stroke-width="2"/>
+ <g class="marc" data-i="1"><circle cx="450" cy="62" r="13"/><text x="450" y="62">1</text></g>
+ <g class="marc" data-i="2"><circle cx="450" cy="146" r="13"/><text x="450" y="146">2</text></g>
+ <g class="marc" data-i="3"><circle cx="356" cy="196" r="13"/><text x="356" y="196">3</text></g>
+ <g class="marc" data-i="4"><circle cx="300" cy="244" r="13"/><text x="300" y="244">4</text></g>
+ <g class="marc" data-i="5"><circle cx="526" cy="324" r="13"/><text x="526" y="324">5</text></g>
+ <g class="marc" data-i="6"><circle cx="322" cy="338" r="13"/><text x="322" y="338">6</text></g>
+ <g class="marc" data-i="7"><circle cx="312" cy="378" r="13"/><text x="312" y="378">7</text></g>
+ <g class="marc" data-i="8"><circle cx="382" cy="500" r="13"/><text x="382" y="500">8</text></g>
+ <g class="marc" data-i="9"><circle cx="450" cy="400" r="13"/><text x="450" y="400">9</text></g>
+ <text class="rot" id="rot-tronco-1" x="620" y="52" text-anchor="start">Quiasma óptico (II)</text>
+ <g class="guia" id="gui-tronco-1"><path d="M612 48 L466 60"/></g>
+ <text class="rot" id="rot-tronco-2" x="620" y="130" text-anchor="start">Fossa interpeduncular</text>
+ <g class="guia" id="gui-tronco-2"><path d="M612 126 L466 144"/></g>
+ <text class="rot" id="rot-tronco-3" x="188" y="176" text-anchor="end">Oculomotor (III)</text>
+ <g class="guia" id="gui-tronco-3"><path d="M196 172 L340 192"/></g>
+ <text class="rot" id="rot-tronco-4" x="188" y="240" text-anchor="end">Trigêmeo (V)</text>
+ <g class="guia" id="gui-tronco-4"><path d="M196 238 L284 242"/></g>
+ <text class="rot" id="rot-tronco-5" x="620" y="322" text-anchor="start">Abducente (VI)</text>
+ <g class="guia" id="gui-tronco-5"><path d="M612 318 L534 322"/></g>
+ <text class="rot" id="rot-tronco-6" x="188" y="330" text-anchor="end">Facial (VII) e VIII</text>
+ <g class="guia" id="gui-tronco-6"><path d="M196 328 L306 336"/></g>
+ <text class="rot" id="rot-tronco-7" x="188" y="392" text-anchor="end">IX, X e XI</text>
+ <g class="guia" id="gui-tronco-7"><path d="M196 388 L296 380"/></g>
+ <text class="rot" id="rot-tronco-8" x="188" y="502" text-anchor="end">Hipoglosso (XII)</text>
+ <g class="guia" id="gui-tronco-8"><path d="M196 498 L366 500"/></g>
+ <text class="rot" id="rot-tronco-9" x="620" y="404" text-anchor="start">Pirâmide bulbar</text>
+ <g class="guia" id="gui-tronco-9"><path d="M612 400 L466 400"/></g>
+ <text class="rot-fixo" x="620" y="180" text-anchor="start">Mesencéfalo</text>
+ <text class="rot-fixo" x="620" y="256" text-anchor="start">Ponte</text>
+ <text class="rot-fixo" x="620" y="470" text-anchor="start">Bulbo</text>
+</svg>`,
+
+ventriculos:`<svg viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sistema ventricular">
+ <path d="M280 262 Q262 158 350 100 Q460 40 588 74 Q706 110 722 206 Q736 300 626 348 Q516 392 398 366 Q310 342 280 262 Z" class="contorno-fino"/>
+ <path d="M340 100 Q460 38 588 74" class="contorno-fino" stroke-width="3"/>
+ <path d="M356 190 Q374 126 460 116 Q552 108 588 158 Q612 192 590 218 Q564 246 526 234 Q502 224 500 200 Q516 188 532 200 Q520 166 476 162 Q412 158 396 206 Q388 234 418 260 Q456 290 504 302 L490 326 Q422 316 376 278 Q342 246 356 190 Z" class="liq"/>
+ <path d="M460 224 Q448 256 456 286 L496 286 Q504 256 494 224 Z" fill="#C7E9F2" stroke="#6970A9" stroke-width="1.6"/>
+ <path d="M496 286 Q516 306 532 324" class="liq" stroke-width="8" fill="none"/>
+ <path d="M532 324 Q564 316 584 332 Q568 358 538 362 Q520 346 532 324 Z" class="liq"/>
+ <path d="M552 362 Q556 400 560 438" class="liq" stroke-width="6" fill="none"/>
+ <path d="M584 310 Q650 306 668 346 Q650 382 588 374" class="contorno-fino"/>
+ <path d="M596 320 Q630 324 646 340 M592 336 Q630 340 652 354 M596 354 Q628 360 646 366" class="contorno-fino"/>
+ <circle cx="446" cy="62" r="9" class="liq"/><circle cx="476" cy="56" r="7" class="liq"/>
+ <g class="marc" data-i="1"><circle cx="410" cy="182" r="13"/><text x="410" y="182">1</text></g>
+ <g class="marc" data-i="2"><circle cx="462" cy="210" r="13"/><text x="462" y="210">2</text></g>
+ <g class="marc" data-i="3"><circle cx="476" cy="258" r="13"/><text x="476" y="258">3</text></g>
+ <g class="marc" data-i="4"><circle cx="516" cy="306" r="13"/><text x="516" y="306">4</text></g>
+ <g class="marc" data-i="5"><circle cx="558" cy="342" r="13"/><text x="558" y="342">5</text></g>
+ <g class="marc" data-i="6"><circle cx="462" cy="58" r="13"/><text x="462" y="58">6</text></g>
+ <g class="marc" data-i="7"><circle cx="558" cy="416" r="13"/><text x="558" y="416">7</text></g>
+ <text class="rot" id="rot-ventriculos-1" x="248" y="140" text-anchor="end">Ventrículo lateral</text>
+ <g class="guia" id="gui-ventriculos-1"><path d="M256 136 L394 176"/></g>
+ <text class="rot" id="rot-ventriculos-2" x="248" y="196" text-anchor="end">Forame interventricular</text>
+ <g class="guia" id="gui-ventriculos-2"><path d="M256 192 L446 206"/></g>
+ <text class="rot" id="rot-ventriculos-3" x="248" y="254" text-anchor="end">III ventrículo</text>
+ <g class="guia" id="gui-ventriculos-3"><path d="M256 250 L460 256"/></g>
+ <text class="rot" id="rot-ventriculos-4" x="248" y="312" text-anchor="end">Aqueduto do mesencéfalo</text>
+ <g class="guia" id="gui-ventriculos-4"><path d="M256 308 L500 306"/></g>
+ <text class="rot" id="rot-ventriculos-5" x="748" y="404" text-anchor="start">IV ventrículo</text>
+ <g class="guia" id="gui-ventriculos-5"><path d="M740 400 L574 348"/></g>
+ <text class="rot" id="rot-ventriculos-6" x="248" y="72" text-anchor="end">Granulações aracnóideas</text>
+ <g class="guia" id="gui-ventriculos-6"><path d="M256 68 L446 60"/></g>
+ <text class="rot" id="rot-ventriculos-7" x="748" y="446" text-anchor="start">Canal central</text>
+ <g class="guia" id="gui-ventriculos-7"><path d="M740 442 L574 420"/></g>
+</svg>`,
+
+cerebelo:`<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cerebelo em corte sagital">
+ <path d="M296 186 Q330 84 440 90 Q542 96 560 196 Q570 280 488 312 Q384 348 316 292 Q274 254 296 186 Z" class="branca"/>
+ <path d="M426 266 Q420 224 404 196 Q388 168 362 156 M426 266 Q434 220 454 192 Q474 164 504 156 M426 266 Q424 294 422 312
+          M404 196 Q384 188 368 194 M404 196 Q394 176 378 170 M454 192 Q474 184 490 190 M454 192 Q464 172 480 166
+          M426 266 Q402 266 386 276 M426 266 Q452 266 468 276" class="contorno-fino"/>
+ <path d="M310 178 Q328 100 432 98 M302 218 Q320 126 440 124" class="contorno-fino"/>
+ <path d="M472 218 Q492 208 504 224 Q512 242 498 254 Q480 260 472 246 Q466 232 472 218 Z" class="cinzenta"/>
+ <ellipse cx="370" cy="312" rx="34" ry="20" class="branca"/>
+ <path d="M234 130 Q222 210 232 290 Q248 316 278 316 L278 126 Q256 118 234 130 Z" class="branca"/>
+ <path d="M278 166 Q302 168 320 166 M278 218 Q306 222 328 218 M278 268 Q304 272 322 270" class="contorno-fino" stroke-width="2.6"/>
+ <g class="marc" data-i="1"><circle cx="426" cy="210" r="13"/><text x="426" y="210">1</text></g>
+ <g class="marc" data-i="2"><circle cx="488" cy="236" r="13"/><text x="488" y="236">2</text></g>
+ <g class="marc" data-i="3"><circle cx="370" cy="312" r="13"/><text x="370" y="312">3</text></g>
+ <g class="marc" data-i="4"><circle cx="300" cy="166" r="13"/><text x="300" y="166">4</text></g>
+ <g class="marc" data-i="5"><circle cx="302" cy="220" r="13"/><text x="302" y="220">5</text></g>
+ <g class="marc" data-i="6"><circle cx="300" cy="270" r="13"/><text x="300" y="270">6</text></g>
+ <text class="rot" id="rot-cerebelo-1" x="620" y="120" text-anchor="start">Árvore da vida</text>
+ <g class="guia" id="gui-cerebelo-1"><path d="M612 116 L442 200"/></g>
+ <text class="rot" id="rot-cerebelo-2" x="620" y="238" text-anchor="start">Núcleo denteado</text>
+ <g class="guia" id="gui-cerebelo-2"><path d="M612 234 L504 236"/></g>
+ <text class="rot" id="rot-cerebelo-3" x="620" y="330" text-anchor="start">Lobo floculonodular</text>
+ <g class="guia" id="gui-cerebelo-3"><path d="M612 326 L386 316"/></g>
+ <text class="rot" id="rot-cerebelo-4" x="196" y="120" text-anchor="end">Pedúnculo superior</text>
+ <g class="guia" id="gui-cerebelo-4"><path d="M204 116 L288 154"/></g>
+ <text class="rot" id="rot-cerebelo-5" x="196" y="356" text-anchor="end">Pedúnculo médio</text>
+ <g class="guia" id="gui-cerebelo-5"><path d="M204 352 L292 232"/></g>
+ <text class="rot" id="rot-cerebelo-6" x="196" y="398" text-anchor="end">Pedúnculo inferior</text>
+ <g class="guia" id="gui-cerebelo-6"><path d="M204 394 L290 282"/></g>
+ <text class="rot-fixo" x="234" y="356" text-anchor="middle">Tronco</text>
+</svg>`,
+
+coronal:`<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Corte coronal do encéfalo">
+ <path d="M450 52 Q590 52 672 138 Q732 202 716 296 Q700 380 614 404 L286 404 Q200 380 184 296 Q168 202 228 138 Q310 52 450 52 Z" class="branca"/>
+ <path d="M450 52 L450 136" class="contorno-fino"/>
+ <g transform="translate(450,240) scale(1.35) translate(-450,-240)">
+<path d="M320 156 Q384 126 450 128 Q516 126 580 156 Q520 176 450 174 Q380 176 320 156 Z" fill="#EAEAF3" stroke="#8A8FA3" stroke-width="1.4"/>
+ <path d="M382 180 Q416 176 426 198 Q416 216 388 210 Q368 200 382 180 Z" class="liq"/>
+ <path d="M518 180 Q484 176 474 198 Q484 216 512 210 Q532 200 518 180 Z" class="liq"/>
+ <path d="M378 176 Q406 178 416 200 Q396 204 380 196 Q370 186 378 176 Z" class="cinzenta"/>
+ <path d="M522 176 Q494 178 484 200 Q504 204 520 196 Q530 186 522 176 Z" class="cinzenta"/>
+ <path d="M416 194 Q406 222 412 254 Q418 280 432 296 L446 290 Q426 258 422 222 Q420 204 426 192 Z" class="zona z-desc"/>
+ <path d="M484 194 Q494 222 488 254 Q482 280 468 296 L454 290 Q474 258 478 222 Q480 204 474 192 Z" class="zona z-desc"/>
+ <path d="M352 208 Q382 204 392 238 Q396 270 370 282 Q342 282 332 252 Q330 224 352 208 Z" class="cinzenta"/>
+ <path d="M396 232 Q412 234 414 256 Q410 274 394 272 Q386 252 396 232 Z" fill="#CFCBD9" stroke="#8A8FA3" stroke-width="1.4"/>
+ <path d="M548 208 Q518 204 508 238 Q504 270 530 282 Q558 282 568 252 Q570 224 548 208 Z" class="cinzenta"/>
+ <path d="M504 232 Q488 234 486 256 Q490 274 506 272 Q514 252 504 232 Z" fill="#CFCBD9" stroke="#8A8FA3" stroke-width="1.4"/>
+ <path d="M420 222 Q450 214 480 222 Q492 252 476 276 Q450 286 424 276 Q408 252 420 222 Z" class="cinzenta"/>
+ <rect x="442" y="220" width="16" height="64" rx="6" class="liq"/>
+ </g>
+ <path d="M416 308 Q450 300 484 308 Q494 356 476 394 L424 394 Q406 356 416 308 Z" class="branca"/>
+ <g class="marc" data-i="1"><circle cx="450" cy="118" r="13"/><text x="450" y="118">1</text></g>
+ <g class="marc" data-i="2"><circle cx="377" cy="175" r="13"/><text x="377" y="175">2</text></g>
+ <g class="marc" data-i="3"><circle cx="326" cy="243" r="13"/><text x="326" y="243">3</text></g>
+ <g class="marc" data-i="4"><circle cx="385" cy="256" r="13"/><text x="385" y="256">4</text></g>
+ <g class="marc" data-i="5"><circle cx="472" cy="252" r="13"/><text x="472" y="252">5</text></g>
+ <g class="marc" data-i="6"><circle cx="415" cy="264" r="12"/><text x="415" y="264">6</text></g>
+ <g class="marc" data-i="7"><circle cx="534" cy="178" r="13"/><text x="534" y="178">7</text></g>
+ <text class="rot" id="rot-coronal-1" x="450" y="34" text-anchor="middle">Corpo caloso</text>
+ <g class="guia" id="gui-coronal-1"><path d="M450 44 L450 112"/></g>
+ <text class="rot" id="rot-coronal-2" x="164" y="140" text-anchor="end">Núcleo caudado</text>
+ <g class="guia" id="gui-coronal-2"><path d="M172 136 L358 170"/></g>
+ <text class="rot" id="rot-coronal-3" x="164" y="234" text-anchor="end">Putame</text>
+ <g class="guia" id="gui-coronal-3"><path d="M172 232 L308 242"/></g>
+ <text class="rot" id="rot-coronal-4" x="164" y="330" text-anchor="end">Globo pálido</text>
+ <g class="guia" id="gui-coronal-4"><path d="M172 326 L370 270"/></g>
+ <text class="rot" id="rot-coronal-5" x="736" y="248" text-anchor="start">Tálamo</text>
+ <g class="guia" id="gui-coronal-5"><path d="M728 244 L488 250"/></g>
+ <text class="rot" id="rot-coronal-6" x="164" y="392" text-anchor="end">Cápsula interna</text>
+ <g class="guia" id="gui-coronal-6"><path d="M172 388 L400 278"/></g>
+ <text class="rot" id="rot-coronal-7" x="736" y="150" text-anchor="start">Ventrículo lateral</text>
+ <g class="guia" id="gui-coronal-7"><path d="M728 146 L552 174"/></g>
+</svg>`,
+
+cortex:`<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Face lateral do hemisfério cerebral esquerdo">
+ <path d="M226 238 Q214 148 312 98 Q424 42 548 74 Q672 106 692 212 Q706 300 618 340 Q516 386 402 362 Q292 340 250 288 Q228 266 226 238 Z" class="branca"/>
+ <path d="M268 272 Q302 306 402 316 Q474 320 528 296 Q568 278 596 248 Q604 292 556 332 Q474 372 384 366 Q306 358 276 328 Q252 302 268 272 Z" class="branca"/>
+ <path d="M418 82 Q442 156 462 244" class="contorno" stroke-width="2.6"/>
+ <path d="M390 90 Q414 162 436 250 M448 78 Q472 152 492 240" class="contorno-fino"/>
+ <path d="M614 122 Q590 172 596 216" class="contorno-fino" stroke-width="2"/>
+ <path d="M280 168 Q338 154 378 136 M266 212 Q326 206 368 192 M520 134 Q570 144 606 136 M524 182 Q566 192 598 186
+          M320 342 Q392 352 462 340 M352 366 Q408 374 470 362 M622 264 Q656 272 674 264" class="contorno-fino"/>
+ <g class="marc" data-i="1"><circle cx="406" cy="152" r="13"/><text x="406" y="152">1</text></g>
+ <g class="marc" data-i="2"><circle cx="470" cy="146" r="13"/><text x="470" y="146">2</text></g>
+ <g class="marc" data-i="3"><circle cx="322" cy="236" r="13"/><text x="322" y="236">3</text></g>
+ <g class="marc" data-i="4"><circle cx="512" cy="316" r="13"/><text x="512" y="316">4</text></g>
+ <g class="marc" data-i="5"><circle cx="646" cy="188" r="13"/><text x="646" y="188">5</text></g>
+ <g class="marc" data-i="6"><circle cx="366" cy="338" r="13"/><text x="366" y="338">6</text></g>
+ <g class="marc" data-i="7"><circle cx="440" cy="132" r="12"/><text x="440" y="132">7</text></g>
+ <text class="rot" id="rot-cortex-1" x="322" y="42" text-anchor="middle">Giro pré-central</text>
+ <g class="guia" id="gui-cortex-1"><path d="M340 52 L398 136"/></g>
+ <text class="rot" id="rot-cortex-2" x="578" y="42" text-anchor="middle">Giro pós-central</text>
+ <g class="guia" id="gui-cortex-2"><path d="M562 52 L480 132"/></g>
+ <text class="rot" id="rot-cortex-3" x="188" y="186" text-anchor="end">Área de Broca</text>
+ <g class="guia" id="gui-cortex-3"><path d="M196 182 L306 228"/></g>
+ <text class="rot" id="rot-cortex-4" x="742" y="332" text-anchor="start">Área de Wernicke</text>
+ <g class="guia" id="gui-cortex-4"><path d="M734 328 L528 318"/></g>
+ <text class="rot" id="rot-cortex-5" x="742" y="190" text-anchor="start">Lobo occipital</text>
+ <g class="guia" id="gui-cortex-5"><path d="M734 186 L662 188"/></g>
+ <text class="rot" id="rot-cortex-6" x="188" y="356" text-anchor="end">Lobo temporal</text>
+ <g class="guia" id="gui-cortex-6"><path d="M196 352 L350 342"/></g>
+ <text class="rot" id="rot-cortex-7" x="742" y="96" text-anchor="start">Sulco central</text>
+ <g class="guia" id="gui-cortex-7"><path d="M734 92 L454 126"/></g>
+ <text class="rot-fixo" x="252" y="120" text-anchor="middle">frontal</text>
+ <text class="rot-fixo" x="672" y="122" text-anchor="middle">occipital</text>
+</svg>`
+
+};
+PRANCHAS.forEach(p => { if (SVGS[p.id]) p.svg = SVGS[p.id]; });
+
+/* ================= motor ================= */
+(function balancear(){
+  let s = 20260827;
+  const r = () => (s = (s*1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+  PRANCHAS.forEach(p => p.itens.forEach((q,k) => {
+    const destino = k % q.alts.length;
+    const outras = q.alts.map((_,i)=>i).filter(i=>i!==q.ok);
+    for (let i=outras.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[outras[i],outras[j]]=[outras[j],outras[i]];}
+    const antigas=q.alts, okAnt=q.ok, errAnt=q.err||{};
+    const nova=[]; let c=0;
+    for(let x=0;x<antigas.length;x++) nova.push(x===destino?okAnt:outras[c++]);
+    q.alts=nova.map(i=>antigas[i]);
+    const err={}; nova.forEach((orig,pos)=>{if(orig!==okAnt&&errAnt[orig])err[pos]=errAnt[orig];});
+    q.err=err; q.ok=destino;
+  }));
+})();
+
+const LETRAS=["A","B","C","D"];
+const respostas=new Map();
+const lista=document.getElementById("pranchas");
+const indice=document.getElementById("indice");
+const placar=document.getElementById("placar");
+const btnErros=document.getElementById("btn-erros");
+let filtroErros=null;
+
+function chave(p,n){return p+"-"+n;}
+function total(){return PRANCHAS.reduce((a,p)=>a+p.itens.length,0);}
+
+function render(){
+  lista.innerHTML=""; indice.innerHTML="";
+  PRANCHAS.forEach(p=>{
+    const itens = filtroErros ? p.itens.filter(i=>filtroErros.has(chave(p.id,i.n))) : p.itens;
+    if(!itens.length) return;
+
+    const a=document.createElement("a");
+    a.className="ind"; a.href="#sec-"+p.id; a.textContent=p.tit.split("—")[0].trim();
+    indice.appendChild(a);
+
+    const sec=document.createElement("section");
+    sec.className="prancha"; sec.id="sec-"+p.id;
+    sec.innerHTML='<p class="p-meta">'+p.meta+'</p><h2 class="p-tit">'+p.tit+'</h2><p class="p-desc">'+p.desc+'</p><div class="fig">'+p.svg+'</div>';
+    const box=document.createElement("div");
+    itens.forEach(q=>box.appendChild(cartao(p,q,sec)));
+    sec.appendChild(box);
+    lista.appendChild(sec);
+
+    // restaura respostas já dadas
+    itens.forEach(q=>{ if(respostas.has(chave(p.id,q.n))) pintar(p,q,sec,respostas.get(chave(p.id,q.n))); });
+  });
+  atualizarPlacar();
+}
+
+function cartao(p,q,sec){
+  const d=document.createElement("div");
+  d.className="item"; d.dataset.k=chave(p.id,q.n);
+  d.innerHTML='<div class="i-head"><span class="i-num">'+q.n+'</span><span class="i-perg">'+q.perg+'</span></div>';
+  const alts=document.createElement("div"); alts.className="alts";
+  q.alts.forEach((t,i)=>{
+    const b=document.createElement("button");
+    b.className="alt"; b.type="button"; b.textContent=t;
+    b.addEventListener("click",()=>{ if(respostas.has(chave(p.id,q.n)))return;
+      respostas.set(chave(p.id,q.n),i); pintar(p,q,sec,i); atualizarPlacar(); });
+    alts.appendChild(b);
+  });
+  d.appendChild(alts);
+  d.appendChild(Object.assign(document.createElement("div"),{className:"fb-area"}));
+  return d;
+}
+
+function pintar(p,q,sec,escolha){
+  const item=sec.querySelector('[data-k="'+chave(p.id,q.n)+'"]');
+  if(!item) return;
+  const acertou = escolha===q.ok;
+  item.querySelectorAll(".alt").forEach((b,i)=>{
+    b.disabled=true;
+    if(i===q.ok) b.classList.add("certa");
+    else if(i===escolha) b.classList.add("errada");
+    else b.classList.add("apagada");
+  });
+  const area=item.querySelector(".fb-area"); area.innerHTML="";
+  if(!acertou){
+    const e=document.createElement("div"); e.className="fb erro";
+    e.innerHTML='<b>Alternativa '+LETRAS[escolha]+' — por que não</b>'+((q.err&&q.err[escolha])||"Essa estrutura não corresponde ao marcador.");
+    area.appendChild(e);
+  }
+  const ok=document.createElement("div"); ok.className="fb";
+  ok.innerHTML='<b>'+(acertou?"Correta":"A correta é "+LETRAS[q.ok]+" — "+q.alts[q.ok])+'</b>'+q.exp;
+  area.appendChild(ok);
+
+  const marc=sec.querySelector('.marc[data-i="'+q.n+'"]');
+  if(marc) marc.classList.add(acertou?"certo":"errado");
+  if(acertou){
+    const rot=sec.querySelector("#rot-"+p.id+"-"+q.n); if(rot) rot.classList.add("on");
+    const gui=sec.querySelector("#gui-"+p.id+"-"+q.n); if(gui) gui.classList.add("on");
+  }
+}
+
+function atualizarPlacar(){
+  let feitas=0, certas=0;
+  PRANCHAS.forEach(p=>p.itens.forEach(q=>{
+    const k=chave(p.id,q.n);
+    if(respostas.has(k)){ feitas++; if(respostas.get(k)===q.ok) certas++; }
+  }));
+  placar.innerHTML = certas+" de "+total()+" identificadas"+(feitas?" · "+Math.round(certas/feitas*100)+"% de acerto":"");
+  btnErros.disabled = !(feitas && certas<feitas);
+}
+
+btnErros.addEventListener("click",()=>{
+  const erros=new Set();
+  PRANCHAS.forEach(p=>p.itens.forEach(q=>{
+    const k=chave(p.id,q.n);
+    if(respostas.has(k)&&respostas.get(k)!==q.ok){ erros.add(k); respostas.delete(k); }
+  }));
+  if(!erros.size) return;
+  filtroErros=erros; render(); window.scrollTo({top:0,behavior:"smooth"});
+});
+
+document.getElementById("btn-recomecar").addEventListener("click",()=>{
+  respostas.clear(); filtroErros=null; render(); window.scrollTo({top:0,behavior:"smooth"});
+});
+
+render();
+
+</script>
+</body>
+</html>

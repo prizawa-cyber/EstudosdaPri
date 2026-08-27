@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leituras e Diretrizes — Portal de Estudos da Pri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F6FD;--paper:#FFFFFF;--rule:#E0E2EE;--rule2:#CBCEDF;
+  --ink:#23263A;--ink2:#5A5F73;--ink3:#8A8FA3;
+  --iolite:#6970A9;--iolite-c:#EAEBF5;
+  --atoll:#007F97;--atoll-c:#DDF2F7;
+  --peach:#83716D;--peach-c:#F7EFED;
+  --lav:#79717C;--lav-c:#F3EEF4;
+  --sans:Archivo,"Segoe UI",system-ui,sans-serif;
+  --serif:"Source Serif 4",Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink2);font-family:var(--sans);font-size:16px;line-height:1.6}
+.page{max-width:1120px;margin:0 auto;padding:0 22px 80px}
+
+.voltar{display:inline-flex;align-items:center;gap:7px;font-size:.76rem;font-weight:500;text-decoration:none;
+  padding:7px 14px 7px 11px;border-radius:20px;margin:26px 0 0;border:1px solid var(--rule2);color:var(--ink2);
+  transition:background .15s,border-color .15s,color .15s}
+.voltar:hover{background:var(--iolite-c);border-color:var(--iolite);color:var(--iolite)}
+.rodape-voltar{margin-top:24px}
+
+.hero{padding:36px 0 24px;border-bottom:1px solid var(--rule);margin-bottom:28px}
+.kicker{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--peach);margin-bottom:13px}
+h1{font-family:var(--serif);font-size:clamp(1.8rem,4.2vw,2.5rem);font-weight:600;color:var(--ink);line-height:1.12;letter-spacing:-.015em;margin-bottom:11px}
+.sub{font-size:.93rem;max-width:66ch}
+
+/* colunas por especialidade */
+.colunas{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:start}
+.coluna{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:20px 18px 16px}
+.col-topo{display:flex;align-items:baseline;gap:9px;padding-bottom:11px;margin-bottom:4px;border-bottom:2px solid}
+.col-nome{font-family:var(--serif);font-size:1.16rem;font-weight:600;color:var(--ink)}
+.col-n{font-size:.7rem;font-weight:600;color:var(--ink3);margin-left:auto;font-variant-numeric:tabular-nums}
+.coluna.cardio .col-topo{border-color:var(--iolite)}
+.coluna.neuro .col-topo{border-color:var(--atoll)}
+.coluna.nefro .col-topo{border-color:var(--lav)}
+.coluna.uti .col-topo{border-color:var(--peach)}
+
+.item{padding:15px 0 13px;border-bottom:1px solid var(--rule)}
+.item:last-child{border-bottom:none;padding-bottom:2px}
+.i-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.selo{font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:3px}
+.s-dir{background:var(--iolite-c);color:var(--iolite)}
+.s-res{background:var(--atoll-c);color:var(--atoll)}
+.ano{font-size:.7rem;color:var(--ink3);font-variant-numeric:tabular-nums}
+.i-tit{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--ink);line-height:1.32;margin-bottom:5px}
+.i-fonte{font-size:.74rem;color:var(--ink3);margin-bottom:8px}
+.i-txt{font-size:.84rem;line-height:1.56;margin-bottom:9px}
+.porque{background:var(--lav-c);border-left:2px solid var(--lav);padding:9px 11px;border-radius:0 4px 4px 0;font-size:.81rem;line-height:1.5;margin-bottom:10px}
+.porque b{display:block;font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;color:var(--lav);margin-bottom:2px;font-weight:600}
+.acoes{display:flex;gap:8px;flex-wrap:wrap}
+.bt{font-size:.74rem;font-weight:500;text-decoration:none;padding:5px 11px;border-radius:4px;border:1px solid var(--rule2);color:var(--ink2)}
+.bt:hover{border-color:var(--iolite);color:var(--iolite);background:var(--iolite-c)}
+.bt.pdf{border-color:var(--atoll);color:var(--atoll);background:var(--atoll-c)}
+.bt.pdf:hover{background:#CFEDF4}
+
+.nota{background:var(--iolite-c);border-radius:8px;padding:19px 21px;margin-top:26px;font-size:.85rem;line-height:1.58}
+.nota h2{font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:7px;font-weight:600}
+.nota code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.79rem;background:#fff;border:1px solid var(--rule);border-radius:3px;padding:1px 5px}
+.nota ol{margin:7px 0 0 18px}
+.nota li{margin-bottom:4px}
+
+footer{border-top:1px solid var(--rule);padding-top:18px;margin-top:32px;font-size:.76rem;color:var(--ink3);line-height:1.6}
+footer b{color:var(--ink2);font-weight:500}
+a:focus-visible{outline:2px solid var(--iolite);outline-offset:2px}
+@media(max-width:600px){.page{padding:0 15px 60px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<a class="voltar" href="index.html">&larr; Portal de Estudos da Pri</a>
+
+<header class="hero">
+  <p class="kicker">Leituras · atualização contínua</p>
+  <h1>Diretrizes e recomendações recentes</h1>
+  <p class="sub">Organizadas por especialidade. Cada entrada traz o título como consta na publicação, a referência completa, um resumo autoral e o que muda na prática. O acesso é sempre pela fonte original.</p>
+</header>
+
+<div class="colunas">
+
+  <!-- ===================== CARDIOLOGIA ===================== -->
+  <section class="coluna cardio">
+    <div class="col-topo"><span class="col-nome">Cardiologia</span><span class="col-n">3 documentos</span></div>
+
+    <article class="item">
+      <div class="i-meta"><span class="selo s-dir">Diretriz</span><span class="ano">2025 · Brasil</span></div>
+      <h3 class="i-tit">Diretriz Brasileira de Dislipidemias e Prevenção da Aterosclerose – 2025</h3>
+      <p class="i-fonte">Sociedade Brasileira de Cardiologia · Arq Bras Cardiol. 2025;122(9):e20250640</p>
+      <p class="i-txt">Documento nacional que reúne avaliação de risco, metas de LDL, tratamento farmacológico e prevenção da aterosclerose, adaptado à realidade brasileira e ao SUS.</p>
+      <div class="porque"><b>Por que importa</b>É a referência que se aplica aqui: enquanto a diretriz americana orienta a discussão internacional, esta define a conduta esperada na prática brasileira e nas provas nacionais.</div>
+      <div class="acoes">
+        <a class="bt pdf" href="diretriz-dislipidemias-sbc-2025.pdf" target="_blank" rel="noopener">Baixar PDF</a>
+        <a class="bt" href="https://doi.org/10.36660/abc.20250640" target="_blank" rel="noopener">DOI</a>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="i-meta"><span class="selo s-res">Resumo executivo</span><span class="ano">2026 · EUA</span></div>
+      <h3 class="i-tit">2026 Acute Pulmonary Embolism Guideline-at-a-Glance</h3>
+      <p class="i-fonte">Dudzinski DM, Cibotti-Sun M, Moore MM · J Am Coll Cardiol. 2026;87(13):1620–1625</p>
+      <p class="i-txt">Síntese da primeira diretriz de TEP agudo da AHA e do ACC. Apresenta as novas Categorias Clínicas de TEP, de A a E, e uma ilustração central que liga cada categoria à conduta inicial.</p>
+      <div class="porque"><b>Por que importa</b>Muda o vocabulário do TEP: sai a divisão em risco baixo, intermediário e alto, entra uma classificação em cinco categorias com modificador respiratório. Paciente assintomático, categoria A, pode receber alta da emergência; a equipe de resposta ao TEP passa a ser recomendação Classe 1.</div>
+      <div class="acoes"><a class="bt" href="https://doi.org/10.1016/j.jacc.2025.12.023" target="_blank" rel="noopener">Ler no JACC</a></div>
+    </article>
+
+    <article class="item">
+      <div class="i-meta"><span class="selo s-dir">Diretriz</span><span class="ano">2026 · EUA</span></div>
+      <h3 class="i-tit">2026 AHA/ACC/ADA/ASN Guideline for the Prevention, Detection, Evaluation, and Management of Cardiovascular-Kidney-Metabolic Syndrome</h3>
+      <p class="i-fonte">Ndumele CE, Rodriguez F, et al. · Circulation, 2026</p>
+      <p class="i-txt">Primeira diretriz a tratar coração, rim e metabolismo como um único eixo, elaborada em conjunto por cardiologia, diabetes, obesidade e nefrologia.</p>
+      <div class="porque"><b>Por que importa</b>Formaliza o que a clínica já mostrava: o paciente com DRC, diabetes e obesidade não é três doentes em um. Interessa direto a quem cuida de feridas e comorbidades crônicas.</div>
+      <div class="acoes"><a class="bt" href="https://professional.heart.org/en/guidelines-statements" target="_blank" rel="noopener">Baixar na AHA</a></div>
+    </article>
+  </section>
+
+  <!-- ===================== NEUROLOGIA ===================== -->
+  <section class="coluna neuro">
+    <div class="col-topo"><span class="col-nome">Neurologia</span><span class="col-n">1 documento</span></div>
+
+    <article class="item">
+      <div class="i-meta"><span class="selo s-dir">Diretriz</span><span class="ano">2026 · EUA</span></div>
+      <h3 class="i-tit">2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association</h3>
+      <p class="i-fonte">Prabhakaran S, Gonzalez NR, Zachrison KS, et al. · Stroke. 2026;57(8):e316–e436</p>
+      <p class="i-txt">Substitui a diretriz de 2018 e a atualização de 2019. Cobre da avaliação pré-hospitalar ao manejo hospitalar precoce e ao início da prevenção secundária, com orientação pediátrica pela primeira vez.</p>
+      <div class="porque"><b>Por que importa</b>Três mudanças de bancada: a tenecteplase entra ao lado da alteplase na janela de até 4,5 h; a trombectomia passa a ser Classe I em grandes núcleos isquêmicos selecionados de 6 a 24 h; e o transporte direto ao centro com trombectomia é considerado quando não há transferência rápida entre hospitais.</div>
+      <div class="acoes"><a class="bt" href="https://doi.org/10.1161/STR.0000000000000513" target="_blank" rel="noopener">Ler em Stroke</a></div>
+    </article>
+  </section>
+
+  <!-- ===================== NEFROLOGIA ===================== -->
+  <section class="coluna nefro">
+    <div class="col-topo"><span class="col-nome">Nefrologia</span><span class="col-n">2 documentos</span></div>
+
+    <article class="item">
+      <div class="i-meta"><span class="selo s-dir">Diretriz</span><span class="ano">2026 · Internacional</span></div>
+      <h3 class="i-tit">KDIGO 2026 Clinical Practice Guideline for the Management of Anemia in Chronic Kidney Disease (CKD)</h3>
+      <p class="i-fonte">KDIGO Anemia Work Group · Kidney Int. 2026;109(1S):S1–S99</p>
+      <p class="i-txt">Primeira atualização desde 2012. Cobre diagnóstico, ferro oral e intravenoso, agentes estimuladores da eritropoese, inibidores da HIF-prolil-hidroxilase e transfusão, com nomenclatura nova para os estados de deficiência de ferro.</p>
+      <div class="porque"><b>Por que importa</b>Traz alvo explícito: manter hemoglobina abaixo de 11,5 g/dL em adultos em uso de ESA. E abandona a lógica de tratamento único, apoiando decisão individualizada.</div>
+      <div class="acoes"><a class="bt" href="https://kdigo.org/guidelines/" target="_blank" rel="noopener">Baixar na KDIGO</a></div>
+    </article>
+
+    <article class="item">
+      <div class="i-meta"><span class="selo s-dir">Diretriz</span><span class="ano">2026 · Internacional</span></div>
+      <h3 class="i-tit">KDIGO 2026 Clinical Practice Guideline for Acute Kidney Injury (AKI) and Acute Kidney Disease (AKD)</h3>
+      <p class="i-fonte">KDIGO · versão de revisão pública, março de 2026</p>
+      <p class="i-txt">Atualiza a diretriz de 2012. Cobre definição e classificação de IRA e DRA, predição de risco, prevenção e tratamento, nefrotoxicidade, terapia de substituição renal e seguimento pós-IRA.</p>
+      <div class="porque"><b>Por que importa</b>É a base dos critérios KDIGO que já usamos à beira do leito — vale acompanhar o que muda antes da versão final.</div>
+      <div class="acoes"><a class="bt" href="https://kdigo.org/guidelines/" target="_blank" rel="noopener">Baixar na KDIGO</a></div>
+    </article>
+  </section>
+
+  <!-- ===================== TERAPIA INTENSIVA ===================== -->
+  <section class="coluna uti">
+    <div class="col-topo"><span class="col-nome">Terapia intensiva</span><span class="col-n">1 documento</span></div>
+
+    <article class="item">
+      <div class="i-meta"><span class="selo s-dir">Diretriz</span><span class="ano">2026 · Internacional</span></div>
+      <h3 class="i-tit">Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026</h3>
+      <p class="i-fonte">Prescott HC, Antonelli M, Alhazzani W, et al. · Intensive Care Med. 2026;52:863–936 · Crit Care Med. 2026</p>
+      <p class="i-txt">São 129 recomendações no documento de adultos, com 46 declarações novas em relação a 2021. Há também versão pediátrica, com definição de sepse baseada em dados.</p>
+      <div class="porque"><b>Por que importa</b>Entram otimização de antibiótico, alvo pressórico possivelmente menor em idosos, remoção de fluido após a ressuscitação e continuidade do cuidado pós-alta. Cateter nasal de alto fluxo passa a ser o dispositivo inicial na insuficiência respiratória da sepse, e há recomendação contra antipiréticos de rotina, probióticos e betabloqueadores.</div>
+      <div class="acoes"><a class="bt" href="https://doi.org/10.1007/s00134-026-08361-1" target="_blank" rel="noopener">Intensive Care Med</a><a class="bt" href="https://www.sccm.org/clinical-resources/guidelines" target="_blank" rel="noopener">SCCM</a></div>
+    </article>
+  </section>
+
+</div>
+
+<section class="nota">
+  <h2>Como acrescentar uma entrada</h2>
+  Abra este arquivo, encontre a coluna da especialidade e copie um bloco <code>&lt;article class="item"&gt;</code> inteiro, trocando o conteúdo. Cada bloco tem: selo e ano, título como consta na publicação, referência completa, resumo autoral, o campo <em>Por que importa</em> e os botões de acesso. Lembre de atualizar o contador <code>col-n</code> no topo da coluna. Para criar uma especialidade nova, copie uma <code>&lt;section class="coluna"&gt;</code> inteira.
+  <ol>
+    <li>Prefira sempre resumir com suas palavras e apontar para a fonte original.</li>
+    <li>Só hospede o PDF aqui quando a publicação for de acesso aberto com licença que permita redistribuição — do contrário, use apenas o link.</li>
+  </ol>
+</section>
+
+<footer>
+  <b>Curadoria pessoal.</b> Resumos e comentários são autorais. Os documentos originais pertencem às respectivas sociedades e periódicos, sempre identificados. O único PDF hospedado aqui é o da Diretriz Brasileira de Dislipidemias, publicado em acesso aberto sob licença Creative Commons de atribuição pelos Arquivos Brasileiros de Cardiologia. Material de estudo, não recomendação clínica.
+</footer>
+
+<a class="voltar rodape-voltar" href="index.html">&larr; Portal de Estudos da Pri</a>
+
+</div>
+</body>
+</html>
