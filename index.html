@@ -42,6 +42,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:
 .card:hover::before{opacity:1}
 .card.semi::before{background:linear-gradient(90deg,var(--rosa),var(--azul))}
 .card.saude::before{background:linear-gradient(90deg,var(--azul),var(--verde))}
+.card.neuro::before{background:linear-gradient(90deg,var(--lilas),var(--teal))}
+.card.anato::before{background:linear-gradient(90deg,var(--amber),var(--rosa))}
 .card.soon{opacity:.45;pointer-events:none}
 .card.soon::before{display:none}
 
@@ -76,6 +78,7 @@ footer{border-top:1px solid var(--rule);padding:22px 40px;font-size:.72rem;color
     <div class="hero-tags">
       <span class="htag">Semiologia I</span>
       <span class="htag">Saúde da Comunidade III</span>
+      <span class="htag">Neuroanatomia</span>
       <span class="htag">Em expansão</span>
     </div>
   </div>
@@ -121,6 +124,47 @@ footer{border-top:1px solid var(--rule);padding:22px 40px;font-size:.72rem;color
         <span class="ctag tag-verde">Feridas · Curativos</span>
         <span class="ctag tag-teal">COFEN 787/2025</span>
         <span class="ctag tag-rosa">40 Questões</span>
+      </div>
+    </a>
+
+    <a class="card neuro" href="simulado-neuro.html">
+      <div class="card-top">
+        <div>
+          <div class="card-meta">Neuroanatomia · Semiologia</div>
+          <div class="card-title">Simulado em Quatro Níveis</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <span class="card-icon">🧠</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+      <p class="card-desc">Estrutura → função → déficit. Do fácil ao muito difícil, com filtro por tema, comentário por distrator e opção de refazer só os erros.</p>
+      <div class="tag-row">
+        <span class="ctag tag-lilas">Pares Cranianos ★</span>
+        <span class="ctag tag-teal">Síndromes Alternas</span>
+        <span class="ctag tag-azul">Vias e Decussação</span>
+        <span class="ctag tag-amber">Vasovagal</span>
+        <span class="ctag tag-rosa">66 Questões</span>
+      </div>
+    </a>
+
+    <a class="card anato" href="neuroanatomia-questionario.html">
+      <div class="card-top">
+        <div>
+          <div class="card-meta">Neuroanatomia Funcional</div>
+          <div class="card-title">Questionário pelo Neuroeixo</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <span class="card-icon">🧬</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+      <p class="card-desc">Os 32 capítulos ordenados do caudal ao rostral. Trilho de progresso por região, gabarito distribuído e comentário em cada alternativa.</p>
+      <div class="tag-row">
+        <span class="ctag tag-amber">Medula e Tronco</span>
+        <span class="ctag tag-teal">Diencéfalo · Cerebelo</span>
+        <span class="ctag tag-lilas">Córtex e Límbico</span>
+        <span class="ctag tag-rosa">77 Questões</span>
       </div>
     </a>
 
