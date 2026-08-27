@@ -38,7 +38,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:
 .hdr h1{font-family:var(--serif);font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:400;margin-bottom:6px;position:relative;z-index:1}
 .hdr .sub{font-size:.8rem;opacity:.7;letter-spacing:.09em;text-transform:uppercase;position:relative;z-index:1}
 .hdr .tip{margin-top:18px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:12px 18px;font-size:.87rem;position:relative;z-index:1}
-.hdr .tip b{color:var(--amber-c)}
+.hdr .tip b{color:#7A5B0A;font-weight:600}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;position:relative;z-index:1}
 .tag{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);padding:3px 12px;border-radius:20px;font-size:.74rem;letter-spacing:.05em}
 
@@ -154,8 +154,8 @@ tr:nth-child(even) td{background:var(--bg)}
 .qo li.C{background:rgba(42,125,79,.2);border-color:var(--verde);color:#fff}
 .qo li.W{background:rgba(194,24,91,.2);border-color:var(--rosa)}
 .ql{font-weight:700;flex-shrink:0;color:rgba(255,255,255,.38)}
-.qo li.C .ql{color:var(--verde)}
-.qo li.W .ql{color:var(--rosa)}
+.qo li.C .ql{color:#00647A}
+.qo li.W .ql{color:#6E5C58}
 .gb{background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.55);padding:7px 18px;border-radius:20px;font-size:.77rem;cursor:pointer;margin-top:11px;transition:all .18s}
 .gb:hover{background:rgba(255,255,255,.1);color:#fff}
 .gp{display:none;margin-top:15px;background:rgba(255,255,255,.05);border-radius:8px;padding:15px;font-size:.83rem;line-height:1.65;color:rgba(255,255,255,.78)}
@@ -259,6 +259,66 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
 .ref-item .veic{font-style:italic}
 .ref-item a{color:var(--lilas);text-decoration:none;border-bottom:1px solid var(--lilas-c)}
 .ref-item a:hover{border-bottom-color:var(--lilas)}
+
+/* ===== bloco de questões: mesmo padrão dos simulados ===== */
+.qs{background:var(--paper);color:var(--text)}
+.qs h2{color:var(--ink);font-size:1.35rem}
+.qs .sub2{color:var(--ink2);opacity:.9;font-size:.8rem;margin-bottom:26px}
+.qc{background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:22px;margin-bottom:18px}
+.qh{margin-bottom:11px}
+.qn{background:var(--lilas-c);color:var(--lilas);font-weight:600;width:26px;height:26px;font-size:.76rem}
+.qm{color:var(--ink3);font-size:.68rem;line-height:1.9}
+.qm span{background:var(--paper);border:1px solid var(--rule);color:var(--ink2);
+  padding:2px 8px;border-radius:3px;margin-right:6px;display:inline-block}
+.qv{background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--lilas);
+  color:var(--text);border-radius:0 5px 5px 0;padding:13px 15px;line-height:1.6}
+.qs2{color:var(--ink);font-weight:500;font-size:.95rem;line-height:1.6;margin-bottom:14px}
+.qo li{background:var(--paper);border:1px solid var(--rule);color:var(--text);
+  border-radius:5px;padding:10px 13px;font-size:.87rem;line-height:1.45}
+.qo li:hover{background:var(--lilas-c);border-color:var(--lilas)}
+.ql{color:var(--ink2);font-weight:600}
+.qo li.C{background:var(--verde-c);border-color:var(--verde);color:#00647A;font-weight:500}
+.qo li.C .ql{color:#00647A}
+.qo li.W{background:var(--rosa-c);border-color:var(--rosa);color:#6E5C58;font-weight:500}
+.qo li.W .ql{color:#6E5C58}
+.gb{background:var(--paper);border:1px solid var(--rule);color:var(--ink2);font-weight:500;font-size:.76rem}
+.gb:hover{background:var(--lilas-c);border-color:var(--lilas);color:var(--lilas)}
+.gp{background:var(--verde-c);border-left:2px solid var(--verde);border-radius:0 5px 5px 0;
+  color:var(--text);padding:13px 15px;font-size:.85rem;line-height:1.6}
+/* tabelas e blocos escuros herdados */
+th{background:var(--lilas);color:#fff}
+.bx.dark{background:var(--ink);color:#fff}
+.bx.dark .bl{color:rgba(255,255,255,.65)}
+.ww{border-right-color:var(--rule)}
+.tip b{color:#7A5B0A;font-weight:600}
+
+/* ===== menu suspenso de temas ===== */
+.menu-tema{position:sticky;top:44px;z-index:900;background:var(--bg);padding:12px 0 14px;margin-bottom:22px}
+.menu-tema{position:sticky}
+.menu-wrap{position:relative}
+.menu-bt{display:flex;align-items:center;gap:12px;width:100%;max-width:520px;cursor:pointer;font-family:var(--sans);
+  background:var(--paper);border:1px solid var(--rule2);border-radius:7px;padding:12px 16px;text-align:left;
+  transition:border-color .15s,box-shadow .15s}
+.menu-bt:hover{border-color:var(--lilas)}
+.menu-bt[aria-expanded="true"]{border-color:var(--lilas);box-shadow:0 2px 10px rgba(105,112,169,.14)}
+.menu-rot{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);
+  padding-right:12px;border-right:1px solid var(--rule)}
+.menu-atual{display:flex;align-items:center;gap:9px;flex:1;font-family:var(--serif);font-size:1.02rem;
+  font-weight:600;color:var(--ink)}
+.mn{font-family:var(--sans);font-size:.68rem;font-weight:600;color:var(--lilas);background:var(--lilas-c);
+  padding:2px 7px;border-radius:3px;flex-shrink:0}
+.seta{color:var(--ink3);font-size:.8rem;transition:transform .18s}
+.menu-bt[aria-expanded="true"] .seta{transform:rotate(180deg)}
+.menu-lista{display:none;position:absolute;left:0;top:calc(100% - 6px);z-index:950;width:100%;max-width:520px;
+  background:var(--paper);border:1px solid var(--rule2);border-radius:7px;box-shadow:0 8px 26px rgba(35,38,58,.15);
+  padding:6px;max-height:66vh;overflow-y:auto}
+.menu-lista.aberto{display:block}
+.mi{display:flex;align-items:center;gap:10px;width:100%;text-align:left;cursor:pointer;font-family:var(--sans);
+  font-size:.88rem;color:var(--ink2);background:none;border:none;padding:9px 11px;border-radius:5px}
+.mi:hover{background:var(--lilas-c);color:var(--ink)}
+.mi[aria-current="true"]{background:var(--lilas-c);color:var(--lilas);font-weight:600}
+.mi.destaque .mn{background:var(--rosa-c);color:var(--rosa)}
+@media(max-width:640px){.menu-tema{top:42px}.menu-bt,.menu-lista{max-width:none}.menu-rot{display:none}}
 </style>
 </head>
 <body>
@@ -273,34 +333,37 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
   <h1>Caderno de Semiologia I — Edição Definitiva 2026</h1>
   <p class="sub">Medicina · 3.º Ano · 2026/1</p>
   <div class="tip"><b>★ Dica:</b> Estudem ondas venosas na jugular, principalmente ondas <b>'a' em canhão</b> e ondas <b>'v' gigantes</b> — módulo dedicado dentro deste caderno.</div>
-  <div class="tags">
-    <span class="tag">Ondas Jugulares ★ PROVA</span>
-    <span class="tag">IRA — KDIGO/RIFLE</span>
-    <span class="tag">Hipolipemiantes SBC 2025 + ACC/AHA 2026</span>
-    <span class="tag">Isquemia Mesentérica</span>
-    <span class="tag">Semiologia Cardiovascular + Respiratória</span>
-    <span class="tag">20 Questões Padrão-Prova</span>
-  </div>
+  
 </header>
 
 <!-- TOC -->
-<nav class="abas" role="tablist" aria-label="Temas do caderno">
-  <button class="aba" role="tab" aria-selected="true" data-alvo="s01" onclick="abrirTema('s01',this)"><span>01</span>Respiratória</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s02" onclick="abrirTema('s02',this)"><span>02</span>IAM / SCA</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s03" onclick="abrirTema('s03',this)"><span>03</span>Insuficiência cardíaca</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s04" onclick="abrirTema('s04',this)"><span>04</span>Dor torácica</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s05" onclick="abrirTema('s05',this)"><span>05</span>Arritmias / SQTL</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s06" onclick="abrirTema('s06',this)"><span>06</span>DAOP</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s07" onclick="abrirTema('s07',this)"><span>07</span>TVP</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s08" onclick="abrirTema('s08',this)"><span>08</span>Isquemia mesentérica</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s09" onclick="abrirTema('s09',this)"><span>09</span>Apendicite</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s10" onclick="abrirTema('s10',this)"><span>10</span>Cirrose / MASLD</button>
-  <button class="aba destaque" role="tab" aria-selected="false" data-alvo="s11" onclick="abrirTema('s11',this)"><span>11</span>Ondas jugulares</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s12" onclick="abrirTema('s12',this)"><span>12</span>Injúria renal aguda</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="s13" onclick="abrirTema('s13',this)"><span>13</span>Hipolipemiantes</button>
-  <button class="aba destaque" role="tab" aria-selected="false" data-alvo="qs" onclick="abrirTema('qs',this)"><span>★</span>20 questões</button>
-  <button class="aba" role="tab" aria-selected="false" data-alvo="ref" onclick="abrirTema('ref',this)"><span>§</span>Fontes</button>
-</nav>
+<div class="menu-tema">
+ <div class="menu-wrap">
+  <button class="menu-bt" id="menuBt" aria-haspopup="true" aria-expanded="false" onclick="alternarMenu(event)">
+    <span class="menu-rot">Tema</span>
+    <span class="menu-atual"><span class="mn" id="menuNum">01</span><span id="menuLabel">Semiologia respiratória</span></span>
+    <span class="seta">▾</span>
+  </button>
+  <div class="menu-lista" id="menuLista" role="menu">
+    <button class="mi" role="menuitem" data-alvo="s01" onclick="escolherTema('s01','01','Semiologia respiratória')"><span class="mn">01</span>Semiologia respiratória</button>
+    <button class="mi" role="menuitem" data-alvo="s02" onclick="escolherTema('s02','02','IAM e síndromes coronarianas')"><span class="mn">02</span>IAM e síndromes coronarianas</button>
+    <button class="mi" role="menuitem" data-alvo="s03" onclick="escolherTema('s03','03','Insuficiência cardíaca')"><span class="mn">03</span>Insuficiência cardíaca</button>
+    <button class="mi" role="menuitem" data-alvo="s04" onclick="escolherTema('s04','04','Dor torácica')"><span class="mn">04</span>Dor torácica</button>
+    <button class="mi" role="menuitem" data-alvo="s05" onclick="escolherTema('s05','05','Arritmias e QT longo')"><span class="mn">05</span>Arritmias e QT longo</button>
+    <button class="mi" role="menuitem" data-alvo="s06" onclick="escolherTema('s06','06','Doença arterial periférica')"><span class="mn">06</span>Doença arterial periférica</button>
+    <button class="mi" role="menuitem" data-alvo="s07" onclick="escolherTema('s07','07','Trombose venosa profunda')"><span class="mn">07</span>Trombose venosa profunda</button>
+    <button class="mi" role="menuitem" data-alvo="s08" onclick="escolherTema('s08','08','Isquemia mesentérica')"><span class="mn">08</span>Isquemia mesentérica</button>
+    <button class="mi" role="menuitem" data-alvo="s09" onclick="escolherTema('s09','09','Apendicite aguda')"><span class="mn">09</span>Apendicite aguda</button>
+    <button class="mi" role="menuitem" data-alvo="s10" onclick="escolherTema('s10','10','Cirrose e MASLD')"><span class="mn">10</span>Cirrose e MASLD</button>
+    <button class="mi destaque" role="menuitem" data-alvo="s11" onclick="escolherTema('s11','11','Ondas venosas jugulares')"><span class="mn">11</span>Ondas venosas jugulares</button>
+    <button class="mi" role="menuitem" data-alvo="s12" onclick="escolherTema('s12','12','Injúria renal aguda')"><span class="mn">12</span>Injúria renal aguda</button>
+    <button class="mi" role="menuitem" data-alvo="s13" onclick="escolherTema('s13','13','Hipolipemiantes')"><span class="mn">13</span>Hipolipemiantes</button>
+    <button class="mi destaque" role="menuitem" data-alvo="qs" onclick="escolherTema('qs','★','20 questões comentadas')"><span class="mn">★</span>20 questões comentadas</button>
+    <button class="mi" role="menuitem" data-alvo="ref" onclick="escolherTema('ref','§','Fontes e leituras')"><span class="mn">§</span>Fontes e leituras</button>
+  </div>
+ </div>
+</div>
+
 
 
 <!-- ===== 01 SEMIOLOGIA RESPIRATÓRIA ===== -->
@@ -372,7 +435,15 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
         <div class="cs2"><div class="cl">Etiológico</div><div class="cv">Pneumococo / Klebsiella / Vírus / Fumo / Autoimune</div></div>
       </div>
       <div class="bx blue"><div class="bl">A pergunta central</div>"Por que esse conjunto de achados aponta para síndrome de condensação — e não para derrame pleural?" <br>Resposta esperada: FTV aumentado (transmissão sólida do som) + macicez (sem ar) + sopro tubário (brônquio pérvio) + crepitações finas = condensação. Derrame teria FTV abolido + macicez intensa + ausência total de sopro tubário.</div>
+    
+    <div class="bx blue atualiza">
+      <div class="bl">Atualização 2025 — o que mudou desde a aula</div>
+      
+      <p>A classificação da DPOC deixou de usar os grupos A–D e passou a A, B e E: o antigo grupo C foi absorvido, e o E reúne quem tem histórico de exacerbação, independentemente da carga de sintomas. Para a semiologia isso reforça que a pergunta sobre exacerbação no último ano pesa tanto quanto a dispneia relatada no consultório.</p>
+      <p>Vale o cuidado com a espirometria: as equações de referência passaram a ser recomendadas sem ajuste por raça, prática que superestimava função pulmonar normal em pessoas negras e atrasava diagnóstico.</p>
+      <div class="fonte-mini">Global Initiative for Chronic Obstructive Lung Disease. GOLD Report — estratégia global para diagnóstico, manejo e prevenção da DPOC, edição 2025. · Bhakta NR, et al. Race and ethnicity in pulmonary function test interpretation: an official ATS statement. Am J Respir Crit Care Med, 2023.</div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -556,7 +627,15 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
         <tr><td>Troponina</td><td>↑↑ (curva)</td><td>Pode ↑ levemente</td><td>Pode ↑ (VD)</td><td>↑ leve</td><td>Normal</td></tr>
       </table>
       <div class="bx red"><div class="bl">Regra de Ouro da Dor Torácica</div>Todo paciente com dor torácica aguda deve ter IAM, dissecção de aorta e TEP excluídos ativamente antes de qualquer outro diagnóstico. Nunca assumir causa benigna sem investigação mínima (ECG + troponina + RX).</div>
+    
+    <div class="bx blue atualiza">
+      <div class="bl">Atualização 2021–2026 — o que mudou desde a aula</div>
+      
+      <p>A diretriz americana de dor torácica firmou dois pontos que mudam a linguagem do plantão. Primeiro, abandona-se o termo <b>dor torácica atípica</b>, considerado enganoso: prefere-se descrever a dor como cardíaca, possivelmente cardíaca ou não cardíaca. Segundo, a troponina ultrassensível com protocolos de 0/1 h ou 0/2 h passa a ser o exame de escolha para descartar rapidamente o infarto.</p>
+      <p>Com a diretriz de TEP de 2026, o diagnóstico diferencial da dor torácica ganhou um vocabulário novo — as categorias clínicas de A a E —, que vale conhecer ao pensar em embolia como causa.</p>
+      <div class="fonte-mini">Gulati M, Levy PD, Mukherjee D, et al. 2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR Guideline for the Evaluation and Diagnosis of Chest Pain. Circulation. 2021;144:e368–e454. · Dudzinski DM, et al. 2026 Acute Pulmonary Embolism Guideline-at-a-Glance. J Am Coll Cardiol. 2026;87(13):1620–1625.</div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -616,7 +695,15 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
         <li><strong>LCSD</strong> (Denervação cardíaca simpática esquerda) em refratários ao betabloqueador sem indicação de CDI</li>
         <li>Evitar todas as drogas que prolongam QT; evitar esportes competitivos</li>
       </ul>
+    
+    <div class="bx blue atualiza">
+      <div class="bl">Atualização 2022 — o que mudou desde a aula</div>
+      
+      <p>A diretriz europeia de arritmias ventriculares e morte súbita reorganizou a avaliação da síndrome do QT longo. O diagnóstico deixou de depender apenas do valor isolado do intervalo: entram o escore de Schwartz, o teste genético e a resposta a manobras provocativas, como a fase de recuperação do teste ergométrico e a mudança postural súbita.</p>
+      <p>Para a semiologia, o ponto prático é a anamnese: síncope em esforço ou em susto, história familiar de morte súbita antes dos 40 anos e uso de fármacos que prolongam o QT continuam sendo o filtro inicial — antes de qualquer eletrocardiograma.</p>
+      <div class="fonte-mini">Zeppenfeld K, Tfelt-Hansen J, et al. 2022 ESC Guidelines for the management of patients with ventricular arrhythmias and the prevention of sudden cardiac death. Eur Heart J. 2022;43(40):3997–4126.</div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -670,7 +757,15 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
         <tr><td>Pele</td><td>Fria, pálida, atrófica, sem pelos</td><td>Normal</td><td>Edema, hiperpigmentação, varizes</td></tr>
         <tr><td>ITB</td><td>Reduzido (&lt;0,9)</td><td>Normal</td><td>Normal</td></tr>
       </table>
+    
+    <div class="bx blue atualiza">
+      <div class="bl">Atualização 2024 — o que mudou desde a aula</div>
+      
+      <p>A diretriz europeia de doenças arteriais periféricas e da aorta reuniu num só documento o que antes estava disperso. Ela reforça o índice tornozelo-braquial como exame inicial e chama atenção para o valor falsamente normal ou elevado no diabético e no renal crônico, por calcificação da média — situação em que se recorre ao índice hálux-braquial ou à análise da onda de pulso.</p>
+      <p>Reforça também que a DAOP é marcador de risco cardiovascular global: o achado de claudicação ou de pulso ausente obriga a rever prevenção secundária, e não só a perfusão do membro.</p>
+      <div class="fonte-mini">Mazzolai L, Rodriguez Palomares J, et al. 2024 ESC Guidelines for the management of peripheral arterial and aortic diseases. Eur Heart J. 2024;45(36):3538–3700.</div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -803,7 +898,15 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
         <tr><td>NOMI</td><td>Otimizar DC (dobutamina), reduzir/retirar vasopressores, papaverina intra-arterial</td><td>Se peritonite franca</td></tr>
         <tr><td><strong>TVM</strong></td><td><strong>Anticoagulação plena com HNF IV — 1.ª linha</strong></td><td>Apenas se peritonite / necrose</td></tr>
       </table>
+    
+    <div class="bx blue atualiza">
+      <div class="bl">Atualização 2022 — o que mudou desde a aula</div>
+      
+      <p>As diretrizes da World Society of Emergency Surgery mantêm a angiotomografia como exame de escolha diante da suspeita, com a advertência que interessa à semiologia: o exame normal não afasta o diagnóstico quando a clínica é sugestiva, e a dor desproporcional ao exame físico segue sendo o achado que salva.</p>
+      <p>O lactato tem valor limitado no início: normal nas primeiras horas, ele só se eleva quando já há necrose transmural — usá-lo como triagem atrasa a laparotomia.</p>
+      <div class="fonte-mini">Bala M, Catena F, Kashuk J, et al. Acute mesenteric ischemia: updated guidelines of the World Society of Emergency Surgery. World J Emerg Surg. 2022;17:54.</div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -849,7 +952,15 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
         <tr><td><strong>S</strong>hift (desvio à esquerda)</td><td>1</td></tr>
         <tr><td><strong>Total: ≥7 = alta probabilidade; ≤3 = baixa</strong></td><td><strong>/10</strong></td></tr>
       </table>
+    
+    <div class="bx blue atualiza">
+      <div class="bl">Atualização 2020 — o que mudou desde a aula</div>
+      
+      <p>As diretrizes de Jerusalém, da World Society of Emergency Surgery, consolidaram o uso de escores clínicos — Alvarado e Adult Appendicitis Score — para estratificar antes de pedir imagem, e reconheceram o tratamento não operatório com antibiótico como alternativa em casos selecionados de apendicite não complicada, desde que discutido com o paciente.</p>
+      <p>O ponto de semiologia permanece: escore baixo tem alto valor preditivo negativo e permite observação; escore alto em homem jovem dispensa imagem em muitos serviços. É a clínica que decide o caminho.</p>
+      <div class="fonte-mini">Di Saverio S, Podda M, De Simone B, et al. Diagnosis and treatment of acute appendicitis: 2020 update of the WSES Jerusalem guidelines. World J Emerg Surg. 2020;15:27.</div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -903,7 +1014,15 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
         <tr><td><strong>Varizes esofágicas com sangramento</strong></td><td>Endoscopia digestiva alta de emergência</td><td>Ligadura + vasoconstritor (terlipressina/octreotida) + β-bloqueador para prevenção</td></tr>
         <tr><td><strong>Encefalopatia hepática</strong></td><td>Escalas de West-Haven; NH₃ sérica (suporte)</td><td>Lactulose oral/retal + rifaximina; tratar fator precipitante</td></tr>
       </table>
+    
+    <div class="bx blue atualiza">
+      <div class="bl">Atualização 2023–2024 — o que mudou desde a aula</div>
+      
+      <p>Mudou o nome e mudou o critério. Um consenso Delphi multissocietário, com 236 painelistas de 56 países, substituiu <b>doença hepática gordurosa não alcoólica</b> por <b>doença hepática esteatótica associada à disfunção metabólica (MASLD)</b>, e NASH por MASH. Os termos “não alcoólica” e “gordurosa” foram considerados estigmatizantes por 61% e 66% dos respondentes.</p>
+      <p>O diagnóstico deixou de ser por exclusão: exige esteatose hepática somada a pelo menos um de cinco fatores de risco cardiometabólico. Criou-se ainda a categoria <b>MetALD</b>, para quem tem MASLD e consumo alcoólico intermediário — 140 a 350 g por semana em mulheres, 210 a 420 g em homens.</p>
+      <div class="fonte-mini">Rinella ME, Lazarus JV, Ratziu V, et al. A multisociety Delphi consensus statement on new fatty liver disease nomenclature. J Hepatol. 2023;79(6):1542–1556. · Rinella ME, et al. AASLD Practice Guidance on the clinical assessment and management of nonalcoholic fatty liver disease. Hepatology, 2023.</div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -1400,12 +1519,15 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
     <div class="ref-item"><b>Bozkurt B, et al.</b> AHA/ACC/ESC/WHF Expert Consensus Document: Second Universal Definition of Heart Failure. <span class='veic'>Circulation</span>, 2026.</div>
     <div class="ref-item"><b>Heart failure evidence update 2026</b> — evidências acumuladas desde as diretrizes de 2021 e 2022, incluindo antagonistas não esteroidais do receptor mineralocorticoide e terapias incretínicas na IC de fração preservada.</div>
     <div class="ref-item"><b>Heidenreich PA, Bozkurt B, et al.</b> 2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure. <span class='veic'>Circulation</span>, 2022.</div>
+    <div class="ref-item"><b>Gulati M, Levy PD, Mukherjee D, et al.</b> 2021 AHA/ACC e multissociedades. Guideline for the Evaluation and Diagnosis of Chest Pain. <span class='veic'>Circulation</span>. 2021;144:e368–e454. — aposenta o termo “dor torácica atípica”.</div>
+    <div class="ref-item"><b>Zeppenfeld K, Tfelt-Hansen J, et al.</b> 2022 ESC Guidelines for the management of patients with ventricular arrhythmias and the prevention of sudden cardiac death. <span class='veic'>Eur Heart J</span>. 2022;43(40):3997–4126.</div>
   </div>
   <div class="ref-grupo">
     <h3>Doença vascular e tromboembolismo</h3>
     <div class="ref-item"><b>Creager MA, Barnes GD, Giri J, et al.</b> 2026 AHA/ACC e multissociedades. Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults. <span class='veic'>J Am Coll Cardiol</span>. 2026;87(13):1626–1710.</div>
     <div class="ref-item"><b>Dudzinski DM, Cibotti-Sun M, Moore MM.</b> 2026 Acute Pulmonary Embolism Guideline-at-a-Glance. <span class='veic'>J Am Coll Cardiol</span>. 2026;87(13):1620–1625.</div>
     <div class="ref-item"><b>Mazzolai L, Rodriguez Palomares J, et al.</b> 2024 ESC Guidelines for the management of peripheral arterial and aortic diseases. <span class='veic'>Eur Heart J</span>, 2024.</div>
+    <div class="ref-item"><b>Bala M, Catena F, Kashuk J, et al.</b> Acute mesenteric ischemia: updated guidelines of the World Society of Emergency Surgery. <span class='veic'>World J Emerg Surg</span>. 2022;17:54.</div>
   </div>
   <div class="ref-grupo">
     <h3>Nefrologia</h3>
@@ -1419,6 +1541,17 @@ body{background:var(--bg);max-width:1060px;padding:74px 20px 90px;font-size:16px
     <div class="ref-item"><b>Rached FH, Miname MH, et al.</b> Diretriz Brasileira de Dislipidemias e Prevenção da Aterosclerose – 2025. <span class='veic'>Arq Bras Cardiol</span>. 2025;122(9):e20250640. — disponível em <a href='leituras.html'>Leituras e Diretrizes</a>.</div>
     <div class="ref-item"><b>Blumenthal RS, Morris PB, et al.</b> 2026 ACC/AHA e multissociedades. Guideline on the Management of Dyslipidemia. <span class='veic'>J Am Coll Cardiol</span>. 2026;87(19):2624–2757.</div>
     <div class="ref-item"><b>2025 Focused Update</b> of the 2019 ESC/EAS Guidelines for the management of dyslipidaemias. <span class='veic'>Eur Heart J</span>, 2025 — algoritmos SCORE2 e SCORE2-OP.</div>
+  </div>
+  <div class="ref-grupo">
+    <h3>Pneumologia</h3>
+    <div class="ref-item"><b>Global Initiative for Chronic Obstructive Lung Disease.</b> <span class="veic">GOLD Report</span> — estratégia global para diagnóstico, manejo e prevenção da DPOC, edição 2025. — classificação A, B e E.</div>
+    <div class="ref-item"><b>Bhakta NR, et al.</b> Race and ethnicity in pulmonary function test interpretation: an official American Thoracic Society statement. <span class="veic">Am J Respir Crit Care Med</span>, 2023. — equações de referência sem ajuste por raça.</div>
+  </div>
+  <div class="ref-grupo">
+    <h3>Abdome agudo e hepatologia</h3>
+    <div class="ref-item"><b>Di Saverio S, Podda M, De Simone B, et al.</b> Diagnosis and treatment of acute appendicitis: 2020 update of the WSES Jerusalem guidelines. <span class="veic">World J Emerg Surg</span>. 2020;15:27.</div>
+    <div class="ref-item"><b>Rinella ME, Lazarus JV, Ratziu V, et al.</b> A multisociety Delphi consensus statement on new fatty liver disease nomenclature. <span class="veic">J Hepatol</span>. 2023;79(6):1542–1556. — NAFLD passa a MASLD; criação da categoria MetALD.</div>
+    <div class="ref-item"><b>Rinella ME, et al.</b> AASLD Practice Guidance on the clinical assessment and management of nonalcoholic fatty liver disease. <span class="veic">Hepatology</span>, 2023.</div>
   </div>
   <div class="ref-grupo">
     <h3>Correlações com emergência e terapia intensiva</h3>
@@ -1465,6 +1598,33 @@ document.querySelectorAll('.toc-grid a, .nav-back a[href^="#"]').forEach(functio
     if (bt){ e.preventDefault(); abrirTema(id, bt); }
   });
 });
+
+
+function alternarMenu(e){
+  if(e) e.stopPropagation();
+  var bt = document.getElementById('menuBt'), lista = document.getElementById('menuLista');
+  var aberto = lista.classList.toggle('aberto');
+  bt.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+}
+function fecharMenu(){
+  document.getElementById('menuLista').classList.remove('aberto');
+  document.getElementById('menuBt').setAttribute('aria-expanded','false');
+}
+function escolherTema(alvo, num, rotulo){
+  document.querySelectorAll('section.card').forEach(function(sec){ sec.classList.toggle('ativa', sec.id === alvo); });
+  document.getElementById('menuNum').textContent = num;
+  document.getElementById('menuLabel').textContent = rotulo;
+  document.querySelectorAll('.mi').forEach(function(b){
+    b.setAttribute('aria-current', b.dataset.alvo === alvo ? 'true' : 'false');
+  });
+  fecharMenu();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+document.addEventListener('click', function(ev){
+  var m = document.querySelector('.menu-tema');
+  if (m && !m.contains(ev.target)) fecharMenu();
+});
+document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape') fecharMenu(); });
 
 </script>
 </body></html>
