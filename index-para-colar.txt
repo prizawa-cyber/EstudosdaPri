@@ -68,8 +68,8 @@ body{background:var(--bg);color:var(--ink2);font-family:var(--sans);font-size:16
 .sigla{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.92rem;font-weight:600;flex-shrink:0}
 .card.semi .sigla{background:var(--clay-c);color:var(--clay)}
 .card.neuro .sigla{background:var(--lilas-c);color:var(--lilas)}
-.card.leituras .sigla{background:var(--clay-c);color:var(--clay)}
 .card.ilustrado .sigla{background:var(--sage-c);color:var(--sage)}
+.card.leituras .sigla{background:var(--clay-c);color:var(--clay)}
 .card.anato .sigla{background:var(--teal-c);color:var(--teal)}
 .card.soon .sigla{background:var(--bg);color:var(--ink3);border:1px solid var(--rule)}
 .card-meta{font-size:.65rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
@@ -192,25 +192,7 @@ a:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
       </div>
     </a>
 
-    <a class="card ilustrado" href="caderno-neuroanatomia-ilustrado.html">
-      <div class="card-top">
-        <div class="card-id">
-          <span class="sigla">Il</span>
-          <div>
-            <div class="card-meta">Neuroanatomia · pranchas</div>
-            <div class="card-title">Caderno Ilustrado</div>
-          </div>
-        </div>
-        <span class="card-arrow">&rarr;</span>
-      </div>
-      <p class="card-desc">Seis pranchas em vetor, desenhadas do zero. Identifique cada estrutura numerada e o nome aparece no desenho conforme você acerta.</p>
-      <div class="tag-row">
-        <span class="ctag tag-teal">Medula · tronco</span>
-        <span class="ctag tag-azul">Ventrículos</span>
-        <span class="ctag tag-sage">Cerebelo · córtex</span>
-        <span class="ctag tag-n">44 estruturas</span>
-      </div>
-    </a>
+    
 
     <a class="card leituras" href="leituras.html">
       <div class="card-top">
@@ -228,6 +210,27 @@ a:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
         <span class="ctag tag-teal">Artigos</span>
         <span class="ctag tag-lilas">Diretrizes</span>
         <span class="ctag tag-clay">Recomendações</span>
+      </div>
+    </a>
+
+
+    <a class="card ilustrado" href="caderno-ilustrado.html">
+      <div class="card-top">
+        <div class="card-id">
+          <span class="sigla">Il</span>
+          <div>
+            <div class="card-meta">Neuroanatomia · pranchas</div>
+            <div class="card-title">Caderno Ilustrado</div>
+          </div>
+        </div>
+        <span class="card-arrow">&rarr;</span>
+      </div>
+      <p class="card-desc">Quatro pranchas com marcadores numerados: córtex, corte coronal, medula e cerebelo. Identifique cada estrutura e confira o comentário.</p>
+      <div class="tag-row">
+        <span class="ctag tag-teal">Córtex · lobos</span>
+        <span class="ctag tag-azul">Coronal · tálamo</span>
+        <span class="ctag tag-lilas">Medula · cerebelo</span>
+        <span class="ctag tag-n">27 estruturas</span>
       </div>
     </a>
 
